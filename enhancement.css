@@ -1,30 +1,33 @@
-/* Premium visual layer */
-:root{--glass:rgba(255,255,255,.085);--line:rgba(255,255,255,.18);--shadow:0 30px 100px rgba(0,0,0,.38)}
-.card{position:relative;overflow:hidden;box-shadow:var(--shadow);border-color:var(--line);background:linear-gradient(145deg,rgba(255,255,255,.11),rgba(255,255,255,.045));}
-.card:before{content:"";position:absolute;inset:-40%;background:radial-gradient(circle at 20% 20%,rgba(255,160,200,.14),transparent 28%),radial-gradient(circle at 80% 70%,rgba(255,255,255,.08),transparent 25%);animation:aurora 12s ease-in-out infinite alternate;pointer-events:none}
+/* Premium visual layer v2 */
+:root{--glass:rgba(255,255,255,.09);--line:rgba(255,255,255,.2);--shadow:0 30px 100px rgba(0,0,0,.42)}
+.card{position:relative;overflow:hidden;box-shadow:var(--shadow);border-color:var(--line);background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.045));isolation:isolate}
+.card:before{content:"";position:absolute;inset:-45%;background:radial-gradient(circle at 20% 20%,rgba(255,160,200,.18),transparent 27%),radial-gradient(circle at 80% 70%,rgba(255,255,255,.09),transparent 25%);animation:aurora 12s ease-in-out infinite alternate;pointer-events:none;z-index:-1}
+.card:after{content:"";position:absolute;top:-120%;left:-45%;width:28%;height:320%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.13),transparent);transform:rotate(22deg);animation:shine 8s ease-in-out infinite;pointer-events:none;z-index:0}
 .card>*{position:relative;z-index:1}
 @keyframes aurora{from{transform:translate3d(-2%,0,0) rotate(0deg)}to{transform:translate3d(2%,2%,0) rotate(4deg)}}
-.choice,.game{position:relative;overflow:hidden;box-shadow:0 10px 28px rgba(0,0,0,.14)}
-.choice:after,.game:after{content:"";position:absolute;top:-80%;left:-35%;width:35%;height:260%;background:rgba(255,255,255,.13);transform:rotate(22deg);transition:.65s}
+@keyframes shine{0%,65%{left:-45%}80%,100%{left:125%}}
+.choice,.game{position:relative;overflow:hidden;box-shadow:0 10px 28px rgba(0,0,0,.17);transform:translateZ(0)}
+.choice:after,.game:after{content:"";position:absolute;top:-80%;left:-35%;width:35%;height:260%;background:rgba(255,255,255,.15);transform:rotate(22deg);transition:.65s}
 .choice:hover:after,.game:hover:after{left:110%}
 .choice:active,.game:active,.btn:active{transform:scale(.96)}
-.premiumActions{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:16px 0 4px}
-.premiumBtn{border:1px solid var(--line);border-radius:20px;padding:15px;background:rgba(255,255,255,.075);color:#fff;font:inherit;font-weight:800;cursor:pointer;transition:.3s;backdrop-filter:blur(10px)}
-.premiumBtn:hover{transform:translateY(-4px);background:rgba(255,255,255,.13);box-shadow:0 14px 35px rgba(0,0,0,.2)}
-.modal{position:fixed;inset:0;z-index:100000;display:grid;place-items:center;padding:20px;background:rgba(7,3,10,.72);backdrop-filter:blur(12px);opacity:0;pointer-events:none;transition:.3s}
-.modal.show{opacity:1;pointer-events:auto}
-.modalBox{width:min(520px,100%);border:1px solid var(--line);border-radius:30px;padding:28px 20px;text-align:center;background:linear-gradient(145deg,rgba(52,20,43,.96),rgba(18,10,24,.96));box-shadow:0 30px 100px rgba(0,0,0,.55);transform:translateY(18px) scale(.96);transition:.35s}
-.modal.show .modalBox{transform:none}
-.modalEmoji{font-size:64px;animation:pulse 1.2s infinite}
-.tapArena{height:250px;margin:16px 0;border-radius:24px;border:1px dashed rgba(255,255,255,.22);background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.08),transparent 65%);position:relative;overflow:hidden;touch-action:manipulation}
-.tapHeart{position:absolute;border:0;background:none;font-size:34px;cursor:pointer;animation:popIn .22s ease;filter:drop-shadow(0 8px 12px rgba(0,0,0,.25))}
-@keyframes popIn{from{transform:scale(0) rotate(-20deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+.choice:before{content:"";position:absolute;inset:auto -20% -60%;height:110px;background:radial-gradient(circle,rgba(255,120,170,.18),transparent 65%);filter:blur(12px);transition:.4s}
+.choice:hover:before{transform:scale(1.5);opacity:1}
+/* Main-page audio notice */
+#start .card:after{content:"🔊  ارفعي صوت جهازك شوي قبل ما تختاري  •  في أغنية خاصة إلك";position:relative;display:block;left:auto;top:auto;width:auto;height:auto;margin:20px auto 0;padding:12px 16px;border:1px solid rgba(255,188,214,.25);border-radius:18px;background:linear-gradient(90deg,rgba(255,99,157,.14),rgba(255,255,255,.07),rgba(255,99,157,.14));color:#ffe3ed;font:700 13px Cairo,sans-serif;text-align:center;transform:none;animation:noticePulse 2.4s ease-in-out infinite;box-shadow:0 10px 30px rgba(0,0,0,.16)}
+@keyframes noticePulse{0%,100%{box-shadow:0 10px 30px rgba(0,0,0,.16);border-color:rgba(255,188,214,.22)}50%{box-shadow:0 10px 38px rgba(255,82,145,.22);border-color:rgba(255,188,214,.5)}}
+/* Make the three worlds feel like distinct premium spaces */
+#bayan .card{border-color:rgba(255,174,204,.3)}#byoun .card{border-color:rgba(164,190,255,.28)}#byonti .card{border-color:rgba(255,157,195,.34)}
+#bayan .game:hover{box-shadow:0 18px 42px rgba(255,104,158,.2)}#byoun .game:hover{box-shadow:0 18px 42px rgba(100,145,255,.2)}#byonti .game:hover{box-shadow:0 18px 42px rgba(255,79,150,.23)}
+/* Animated decorative constellations / petals */
+#bayan:before,#byoun:before,#byonti:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.65;background-image:radial-gradient(circle at 15% 20%,#fff8 0 1px,transparent 2px),radial-gradient(circle at 80% 30%,#fff6 0 1px,transparent 2px),radial-gradient(circle at 35% 75%,#fff6 0 1px,transparent 2px),radial-gradient(circle at 70% 85%,#fff7 0 1px,transparent 2px);background-size:180px 180px,230px 230px,260px 260px,210px 210px;animation:starsDrift 18s linear infinite}
+@keyframes starsDrift{to{background-position:60px 100px,-70px 80px,90px -60px,-40px 100px}}
+/* Interactive ripple/spark polish */
 .rippleFx{position:fixed;width:18px;height:18px;border:2px solid rgba(255,170,205,.75);border-radius:50%;pointer-events:none;z-index:100001;animation:ripple .65s ease-out forwards}
 @keyframes ripple{to{width:100px;height:100px;opacity:0;margin:-41px}}
 .spark{position:fixed;pointer-events:none;z-index:100000;font-size:18px;animation:spark .9s ease-out forwards}
 @keyframes spark{to{transform:translate(var(--x),var(--y)) scale(.2) rotate(180deg);opacity:0}}
-.progressTop{position:fixed;left:50%;top:58px;transform:translateX(-50%);z-index:9998;width:min(260px,48vw);height:4px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}
-.progressTop i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff79a8,#fff);transition:.5s}
-.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,20px);z-index:100002;background:rgba(25,12,25,.92);border:1px solid var(--line);padding:12px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:.3s;white-space:nowrap;box-shadow:0 15px 40px rgba(0,0,0,.3)}
-.toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-width:600px){.premiumActions{grid-template-columns:1fr}.progressTop{top:55px;width:42vw}.modalBox{padding:24px 16px}.tapArena{height:230px}}
+/* Premium utility classes retained for future interactions */
+.premiumActions{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:16px 0 4px}.premiumBtn{border:1px solid var(--line);border-radius:20px;padding:15px;background:rgba(255,255,255,.075);color:#fff;font:inherit;font-weight:800;cursor:pointer;transition:.3s;backdrop-filter:blur(10px)}.premiumBtn:hover{transform:translateY(-4px);background:rgba(255,255,255,.13);box-shadow:0 14px 35px rgba(0,0,0,.2)}
+.modal{position:fixed;inset:0;z-index:100000;display:grid;place-items:center;padding:20px;background:rgba(7,3,10,.72);backdrop-filter:blur(12px);opacity:0;pointer-events:none;transition:.3s}.modal.show{opacity:1;pointer-events:auto}.modalBox{width:min(520px,100%);border:1px solid var(--line);border-radius:30px;padding:28px 20px;text-align:center;background:linear-gradient(145deg,rgba(52,20,43,.96),rgba(18,10,24,.96));box-shadow:0 30px 100px rgba(0,0,0,.55);transform:translateY(18px) scale(.96);transition:.35s}.modal.show .modalBox{transform:none}.modalEmoji{font-size:64px;animation:pulse 1.2s infinite}.tapArena{height:250px;margin:16px 0;border-radius:24px;border:1px dashed rgba(255,255,255,.22);background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.08),transparent 65%);position:relative;overflow:hidden;touch-action:manipulation}.tapHeart{position:absolute;border:0;background:none;font-size:34px;cursor:pointer;animation:popIn .22s ease;filter:drop-shadow(0 8px 12px rgba(0,0,0,.25))}@keyframes popIn{from{transform:scale(0) rotate(-20deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,20px);z-index:100002;background:rgba(25,12,25,.92);border:1px solid var(--line);padding:12px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:.3s;white-space:nowrap;box-shadow:0 15px 40px rgba(0,0,0,.3)}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:600px){.premiumActions{grid-template-columns:1fr}.modalBox{padding:24px 16px}.tapArena{height:230px}#start .card:after{font-size:12px;line-height:1.7}}
