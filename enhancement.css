@@ -1,0 +1,30 @@
+/* Premium visual layer */
+:root{--glass:rgba(255,255,255,.085);--line:rgba(255,255,255,.18);--shadow:0 30px 100px rgba(0,0,0,.38)}
+.card{position:relative;overflow:hidden;box-shadow:var(--shadow);border-color:var(--line);background:linear-gradient(145deg,rgba(255,255,255,.11),rgba(255,255,255,.045));}
+.card:before{content:"";position:absolute;inset:-40%;background:radial-gradient(circle at 20% 20%,rgba(255,160,200,.14),transparent 28%),radial-gradient(circle at 80% 70%,rgba(255,255,255,.08),transparent 25%);animation:aurora 12s ease-in-out infinite alternate;pointer-events:none}
+.card>*{position:relative;z-index:1}
+@keyframes aurora{from{transform:translate3d(-2%,0,0) rotate(0deg)}to{transform:translate3d(2%,2%,0) rotate(4deg)}}
+.choice,.game{position:relative;overflow:hidden;box-shadow:0 10px 28px rgba(0,0,0,.14)}
+.choice:after,.game:after{content:"";position:absolute;top:-80%;left:-35%;width:35%;height:260%;background:rgba(255,255,255,.13);transform:rotate(22deg);transition:.65s}
+.choice:hover:after,.game:hover:after{left:110%}
+.choice:active,.game:active,.btn:active{transform:scale(.96)}
+.premiumActions{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:16px 0 4px}
+.premiumBtn{border:1px solid var(--line);border-radius:20px;padding:15px;background:rgba(255,255,255,.075);color:#fff;font:inherit;font-weight:800;cursor:pointer;transition:.3s;backdrop-filter:blur(10px)}
+.premiumBtn:hover{transform:translateY(-4px);background:rgba(255,255,255,.13);box-shadow:0 14px 35px rgba(0,0,0,.2)}
+.modal{position:fixed;inset:0;z-index:100000;display:grid;place-items:center;padding:20px;background:rgba(7,3,10,.72);backdrop-filter:blur(12px);opacity:0;pointer-events:none;transition:.3s}
+.modal.show{opacity:1;pointer-events:auto}
+.modalBox{width:min(520px,100%);border:1px solid var(--line);border-radius:30px;padding:28px 20px;text-align:center;background:linear-gradient(145deg,rgba(52,20,43,.96),rgba(18,10,24,.96));box-shadow:0 30px 100px rgba(0,0,0,.55);transform:translateY(18px) scale(.96);transition:.35s}
+.modal.show .modalBox{transform:none}
+.modalEmoji{font-size:64px;animation:pulse 1.2s infinite}
+.tapArena{height:250px;margin:16px 0;border-radius:24px;border:1px dashed rgba(255,255,255,.22);background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.08),transparent 65%);position:relative;overflow:hidden;touch-action:manipulation}
+.tapHeart{position:absolute;border:0;background:none;font-size:34px;cursor:pointer;animation:popIn .22s ease;filter:drop-shadow(0 8px 12px rgba(0,0,0,.25))}
+@keyframes popIn{from{transform:scale(0) rotate(-20deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+.rippleFx{position:fixed;width:18px;height:18px;border:2px solid rgba(255,170,205,.75);border-radius:50%;pointer-events:none;z-index:100001;animation:ripple .65s ease-out forwards}
+@keyframes ripple{to{width:100px;height:100px;opacity:0;margin:-41px}}
+.spark{position:fixed;pointer-events:none;z-index:100000;font-size:18px;animation:spark .9s ease-out forwards}
+@keyframes spark{to{transform:translate(var(--x),var(--y)) scale(.2) rotate(180deg);opacity:0}}
+.progressTop{position:fixed;left:50%;top:58px;transform:translateX(-50%);z-index:9998;width:min(260px,48vw);height:4px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}
+.progressTop i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff79a8,#fff);transition:.5s}
+.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,20px);z-index:100002;background:rgba(25,12,25,.92);border:1px solid var(--line);padding:12px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:.3s;white-space:nowrap;box-shadow:0 15px 40px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:600px){.premiumActions{grid-template-columns:1fr}.progressTop{top:55px;width:42vw}.modalBox{padding:24px 16px}.tapArena{height:230px}}
