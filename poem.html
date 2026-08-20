@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>مدينة الشعر ❤️</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:radial-gradient(circle at 50% 10%,#fff8e8,#fbe4ef 48%,#211323);color:#642447;overflow-x:hidden}.wrap{width:min(920px,94%);margin:auto;padding:24px 0 50px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.btn{border:0;border-radius:18px;padding:12px 18px;background:rgba(255,255,255,.9);color:#7c2853;font-size:17px;box-shadow:0 8px 25px #57213a22;cursor:pointer}.card{background:rgba(255,255,255,.9);backdrop-filter:blur(12px);border-radius:30px;padding:28px 20px;box-shadow:0 20px 60px #3b142b33}.title{text-align:center;font-size:clamp(30px,7vw,52px);margin:8px 0;color:#8b2859}.subtitle{text-align:center;font-size:18px;color:#946078;margin-bottom:28px}.poem{display:grid;gap:18px}.line{padding:22px 18px;border-radius:22px;background:linear-gradient(145deg,#fff,#fff2f7);font-size:clamp(20px,4.8vw,31px);line-height:2.05;text-align:center;box-shadow:0 8px 25px #5a1f3b12;animation:rise .7s ease both}.line:nth-child(2){animation-delay:.1s}.line:nth-child(3){animation-delay:.2s}.line:nth-child(4){animation-delay:.3s}.final{font-weight:800;color:#b31f62}.heart{font-size:34px;text-align:center;animation:pulse 1.5s infinite}.rain{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:5}.drop{position:absolute;top:-50px;animation:fall linear forwards}@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}@keyframes pulse{50%{transform:scale(1.15)}}@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:0}}@media(max-width:600px){.wrap{width:92%;padding-top:14px}.card{padding:22px 14px}.line{padding:18px 12px}}
+</style>
+</head>
+<body>
+<div class="rain" id="rain"></div>
+<div class="wrap">
+<div class="top"><button class="btn" onclick="history.back()">↩️ رجوع</button><div>❤️ مدينة الشعر</div></div>
+<div class="card">
+<h1 class="title">مدينة الشعر</h1>
+<p class="subtitle">قصيدة صباحية لبيان ❤️</p>
+<div class="heart">🌹 ✨ ❤️ ✨ 🌹</div>
+<div class="poem">
+<div class="line">صَبَاحُ الخَيْرِ لِوَجْهِكِ الذِي أَقْبَلَ فَأَنَارَ ، وَلِعَيْنَيْكِ اللَّتَيْنِ تَخْتَصِرَانِ النَّهَارْ</div>
+<div class="line">أَشْرَقَتِ الشّمْسُ فَطَابَ الوُجُودُ وَاسْتَدَار، وأَقْبَلتِ فِي قَلْبِي فَتَوَهَجَ العِشْقُ وَ اسْتَنَارْ</div>
+<div class="line">يَبْدَأُ عُمْرِي حِينَمَا يَلُوحُ طَيْفُكِ المَجِيدْ ، وَيَسْتَقِيمُ نَبْضِي إِذْ يَزُورُنِي حُسْنُكِ الفَرِيدْ</div>
+<div class="line final">فَمَا الصّبَاحُ فِي عُرْفِي إِلا لَمْحَةً مِنْ خَيَالِكِ ، وَمَا الضِّيَاءُ فِي كَوْنِي إِلا خُطْوَةً فِي دَلَالِكِ ... ❤️صَبَاحِي أَنْتِ❤️</div>
+</div>
+</div></div>
+<script>
+const rain=document.getElementById('rain');
+setInterval(()=>{const d=document.createElement('span');d.className='drop';d.textContent=['🌹','🌸','❤️','✨','💗'][Math.floor(Math.random()*5)];d.style.left=Math.random()*100+'vw';d.style.fontSize=(18+Math.random()*22)+'px';d.style.animationDuration=(3+Math.random()*4)+'s';rain.appendChild(d);setTimeout(()=>d.remove(),7500)},550);
+</script>
+</body>
+</html>
