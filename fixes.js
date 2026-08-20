@@ -1,74 +1,27 @@
 (()=>{
-  // Final delivery fixes: envelope stays inside the title card, heart hunt popup, auto-scroll.
   const names={bayan:'بيان',byoun:'بيون',byonti:'بيونتي'};
-  const getWorld=()=>document.querySelector('.screen.active')?.id||'bayan';
+  const world=()=>document.querySelector('.screen.active')?.id||'bayan';
+  const msgBox=()=>document.getElementById(world()+'Msg');
+  function scrollToResult(){const el=msgBox();if(!el||!el.textContent.trim())return;requestAnimationFrame(()=>setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'center',inline:'nearest'}),60));}
+  ['bayanMsg','byounMsg','byontiMsg'].forEach(id=>{const el=document.getElementById(id);if(!el)return;new MutationObserver(scrollToResult).observe(el,{subtree:true,childList:true,characterData:true,attributes:true});});
+  document.addEventListener('click',e=>{if(e.target.closest('.tools .tile,.choices .tile,.game,.choice,.btn'))setTimeout(scrollToResult,180);},true);
 
-  // Put the Bayan envelope and its paper together inside the same visual card.
-  function fitEnvelope(){
-    const e=document.querySelector('#bayanLetter .envelope');
-    const card=e?.closest('.card');
-    if(!e||!card)return;
-    e.style.width='min(560px,94vw)';
-    e.style.margin='18px auto 8px';
-    e.style.height='520px';
-  }
-  window.openEnvelope=function(){
-    if(typeof window.gameCleanup==='function')window.gameCleanup();
-    if(typeof window.go==='function')window.go('bayanLetter');
-    requestAnimationFrame(()=>{
-      fitEnvelope();
-      const e=document.querySelector('#bayanLetter .envelope');
-      if(e)e.classList.add('open');
-    });
-  };
+  function layoutEnvelope(){const env=document.querySelector('#bayanLetter .envelope');if(!env)return;env.style.margin='18px auto 30px';env.style.width='min(560px,94vw)';}
+  window.openEnvelope=function(){if(typeof window.gameCleanup==='function')window.gameCleanup();if(typeof window.go==='function')window.go('bayanLetter');requestAnimationFrame(layoutEnvelope);};
+  document.addEventListener('DOMContentLoaded',layoutEnvelope);
 
-  // Heart hunt: every successful catch ends with a large popup: بحبك <name>.
   window.huntHearts=function(){
-    const st=document.getElementById('bayanStage');
-    if(!st)return;
-    st.innerHTML='<div class="gameHud" id="finalHuntHud">❤️ 0 / 7 · ⏱️ 20</div><div class="huntHint">المسي كل قلب قبل ما يختفي ❤️</div>';
-    let score=0,time=20,ended=false;
-    const hearts=new Set();
-    const world=getWorld();
-    const finish=()=>{
-      if(ended)return; ended=true; clearInterval(clock); clearInterval(spawnTimer);
-      hearts.forEach(h=>h.remove()); hearts.clear();
-      const pop=document.createElement('div');
-      pop.className='lovePopup';
-      pop.innerHTML=`<div class="lovePopupBox"><div class="loveBig">❤️</div><div class="loveText">بحبك ${names[world]||'بيان'}</div><div class="loveSub">هاي الكلمة إلك وحدك ❤️</div><button type="button" class="btn loveClose">كملي المفاجأة ✨</button></div>`;
-      document.body.appendChild(pop);
-      requestAnimationFrame(()=>pop.classList.add('show'));
-      pop.querySelector('.loveClose').onclick=()=>{pop.classList.remove('show');setTimeout(()=>pop.remove(),300)};
-      if(typeof window.rain==='function')window.rain(['❤️','💗','💖'],45);
-    };
-    const update=()=>{const h=document.getElementById('finalHuntHud');if(h)h.textContent=`❤️ ${score} / 7 · ⏱️ ${time}`};
-    const spawn=()=>{
-      if(ended||score>=7)return;
-      const h=document.createElement('button'); h.type='button'; h.className='tapHeart'; h.textContent=['❤️','💗','💖'][Math.floor(Math.random()*3)];
-      h.style.left=(7+Math.random()*82)+'%'; h.style.top=(22+Math.random()*66)+'%';
-      h.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();if(ended)return;h.remove();hearts.delete(h);score++;update();if(score>=7)finish();else spawn()},{once:true});
-      st.appendChild(h);hearts.add(h);
-      setTimeout(()=>{if(!ended&&h.isConnected){h.remove();hearts.delete(h);if(score<7)spawn()}},2200);
-    };
-    for(let i=0;i<3;i++)spawn();
-    const clock=setInterval(()=>{time--;update();if(time<=0&&!ended){ended=true;clearInterval(clock);clearInterval(spawnTimer);hearts.forEach(h=>h.remove());hearts.clear()}},1000);
-    const spawnTimer=setInterval(()=>{if(!ended&&score<7&&hearts.size<4)spawn()},850);
+    const st=document.getElementById('bayanStage');if(!st)return;
+    if(typeof window.gameCleanup==='function')window.gameCleanup();
+    st.innerHTML='<div class="gameHud" id="huntHudFixed">❤️ 0 / 7</div><div class="huntHint">المسي القلوب السبعة ❤️</div>';
+    let score=0,ended=false;let clockId;const hearts=new Set();
+    const removeAll=()=>{hearts.forEach(h=>h.remove());hearts.clear();};
+    const popup=()=>{if(ended)return;ended=true;clearInterval(clockId);removeAll();const old=document.querySelector('.lovePopup');if(old)old.remove();const pop=document.createElement('div');pop.className='lovePopup show';pop.innerHTML='<div class="lovePopupBox"><div class="loveBig">❤️</div><div class="loveText">بحبك '+(names[world()]||'بيان')+'</div><div class="loveSub">جمعتِ كل القلوب ❤️</div><button class="btn loveClose" type="button">كملي ❤️</button></div>';document.body.appendChild(pop);pop.querySelector('.loveClose').onclick=()=>pop.remove();if(typeof window.rain==='function')window.rain(['❤️','💗','💖','💕'],50);};
+    const update=()=>{const h=document.getElementById('huntHudFixed');if(h)h.textContent='❤️ '+score+' / 7';};
+    const spawn=()=>{if(ended||score>=7)return;const h=document.createElement('button');h.type='button';h.className='tapHeart';h.textContent=['❤️','💗','💖'][Math.floor(Math.random()*3)];h.setAttribute('aria-label','قلب');h.style.left=(6+Math.random()*84)+'%';h.style.top=(18+Math.random()*70)+'%';h.onclick=ev=>{ev.preventDefault();ev.stopPropagation();if(ended)return;h.remove();hearts.delete(h);score++;update();if(score>=7)popup();else spawn();};st.appendChild(h);hearts.add(h);};
+    for(let i=0;i<4;i++)spawn();
+    clockId=setInterval(()=>{if(ended){clearInterval(clockId);return;}while(hearts.size<4)spawn();},700);
+    window.gameCleanup=()=>{ended=true;clearInterval(clockId);removeAll();};
   };
-
-  // Any activity result scrolls smoothly to its result box.
-  function scrollResult(el){
-    if(!el)return;
-    setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'center'}),80);
-  }
-  document.addEventListener('click',e=>{
-    const target=e.target.closest('.choice,.game,.tile,.premiumBtn');
-    if(!target)return;
-    setTimeout(()=>{
-      const screen=target.closest('.screen');
-      const result=screen?.querySelector('.msg.show:not(.hidden), .msg:not(.hidden), #bayanMsg');
-      if(result)scrollResult(result);
-    },120);
-  },true);
-
-  document.addEventListener('DOMContentLoaded',()=>{fitEnvelope()});
+  const style=document.createElement('style');style.textContent=`#bayanStage .tapHeart{position:absolute!important;z-index:9999!important;pointer-events:auto!important;touch-action:manipulation!important;display:block!important;opacity:1!important}.lovePopup{position:fixed!important;inset:0!important;z-index:2147483000!important;display:grid!important;place-items:center!important}.lovePopup.show{opacity:1!important;pointer-events:auto!important}.lovePopupBox{position:relative!important;z-index:2147483001!important}#bayanLetter .envelope{position:relative!important;margin-left:auto!important;margin-right:auto!important}#bayanLetter .paper{z-index:20!important}#bayanLetter .flap{z-index:30!important}#bayanLetter .envelope.open .flap{z-index:5!important}#bayanLetter .envelope.open .paper{z-index:40!important;transform:translateY(-155px)!important}`;document.head.appendChild(style);
 })();
