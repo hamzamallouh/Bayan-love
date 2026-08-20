@@ -30,11 +30,58 @@
     if(typeof window.go==='function')window.go('bayanLetter');
     requestAnimationFrame(()=>{prepareLetter();const env=document.querySelector('#bayanLetter .envelope');if(env){env.classList.add('open');syncEnvelopeLayers(env)}});
   };
+
+  // Keep the message box visible whenever a button creates a new message.
+  const originalMsg=window.msg;
+  window.msg=function(id,text){
+    if(typeof originalMsg==='function') originalMsg(id,text);
+    const el=document.getElementById(id);
+    if(!el)return;
+    el.classList.add('show');
+    setTimeout(()=>{
+      const r=el.getBoundingClientRect();
+      const top=r.top+window.scrollY;
+      window.scrollTo({top:Math.max(0,top-110),behavior:'smooth'});
+    },80);
+  };
+
+  // Bayan bouquet: the rain is made ONLY from the three flowers she selected.
+  window.bouquetGame=function(){
+    const st=document.getElementById('bayanStage');
+    if(!st)return;
+    if(typeof window.gameCleanup==='function')window.gameCleanup();
+    window.gameCleanup=null;
+    st.innerHTML='<div class="msg show">اختاري 3 ورود لتصنعي باقة بيان 🌷 وبعدها بتنزل نفس ورودك كمطر ❤️</div>';
+    const flowers=['🌹','🌷','🌸','🌺','🌻','🌼','🪻','💐'];
+    const selected=[];
+    flowers.sort(()=>Math.random()-0.5).slice(0,5).forEach((flower,i)=>{
+      const b=document.createElement('button');
+      b.className='tapHeart bouquetFlower';
+      b.textContent=flower;
+      b.setAttribute('aria-label','اختاري '+flower);
+      b.style.left=(8+i*18)+'%';
+      b.style.top=(38+(i%2)*20)+'%';
+      b.onclick=()=>{
+        if(b.disabled||selected.length>=3)return;
+        selected.push(flower); b.disabled=true; b.classList.add('selected');
+        b.style.transform='scale(1.28)';
+        if(selected.length===3){
+          const chosen=[...selected];
+          if(typeof originalMsg==='function')originalMsg('bayanMsg','باقة بيان اختارتها إنتِ: '+chosen.join(' ')+' ❤️');
+          const dropTimer=setTimeout(()=>window.rain(chosen,42),180);
+          window.gameCleanup=()=>clearTimeout(dropTimer);
+        }
+      };
+      st.appendChild(b);
+    });
+  };
+
   document.addEventListener('DOMContentLoaded',()=>{
     prepareLetter();
     const env=document.querySelector('#bayanLetter .envelope');
     if(env)env.addEventListener('click',()=>requestAnimationFrame(()=>syncEnvelopeLayers(env)));
   });
+
   const style=document.createElement('style');style.textContent=`
     .letterText{direction:rtl;text-align:right;font-size:18px!important;line-height:1.72!important;width:100%;box-sizing:border-box}
     .letterText>div{display:block;margin:0 0 12px;white-space:normal;overflow-wrap:normal}
@@ -51,6 +98,7 @@
     .envelope.open .flap{z-index:5!important}
     .envelope.open .seal{z-index:31!important}
     .paper{height:640px!important;min-height:0!important;overflow:visible!important;padding:22px!important;box-sizing:border-box}
+    .bouquetFlower.selected{filter:drop-shadow(0 0 12px rgba(255,105,180,.8));opacity:.85}
     @media(max-width:620px){.letterText{font-size:16px!important;line-height:1.62!important}.paper{height:640px!important;padding:18px!important}.envelope{height:680px!important;transform:translateX(12px)!important}.envelope:not(.open) .paper{transform:translateY(-75px)!important}.envelope.open .paper{transform:translateY(-155px)!important}}
   `;document.head.appendChild(style);
 })();
