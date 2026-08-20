@@ -24,7 +24,7 @@
     .paper{height:640px!important;min-height:0!important;overflow:visible!important;padding:22px!important;box-sizing:border-box;z-index:40!important;transform:translateY(-90px)!important}
     .envelope{height:680px!important;overflow:visible!important;transform:translateX(18px)!important}
     .envelope:not(.open) .paper{z-index:40!important;transform:translateY(-90px)!important}
-    .envelope:not(.open) .flap{z-index:4!important}
+    .envelope:not(.open) .flap{z-index:60!important}
     .envelope.open .paper{transform:translateY(-155px)!important;z-index:50!important}
     .envelope.open .flap{z-index:5!important}
     @media(max-width:620px){.letterText{font-size:16px!important;line-height:1.62!important}.paper{height:640px!important;padding:18px!important}.envelope{height:680px!important;transform:translateX(12px)!important}.envelope:not(.open) .paper{transform:translateY(-75px)!important}.envelope.open .paper{transform:translateY(-155px)!important}}
