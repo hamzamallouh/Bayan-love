@@ -21,7 +21,7 @@
     .letterText{direction:rtl;text-align:right;font-size:18px!important;line-height:1.72!important;width:100%;box-sizing:border-box}
     .letterText>div{display:block;margin:0 0 12px;white-space:normal;overflow-wrap:normal}
     .letterText>div:last-child{margin-bottom:0}
-    .paper{height:640px!important;min-height:0!important;overflow:visible!important;z-index:40!important;padding:22px!important;box-sizing:border-box}
+    .paper{height:640px!important;min-height:0!important;overflow:visible!important;z-index:50!important;padding:22px!important;box-sizing:border-box}
     .envelope{height:680px!important;overflow:visible!important;transform:translateX(18px)}
     .envelope.open .paper{transform:translateY(-155px)!important;z-index:50!important}
     .envelope.open .flap{z-index:5!important}
