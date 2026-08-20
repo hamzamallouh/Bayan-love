@@ -7,7 +7,7 @@
     let page=document.getElementById('hamzaFullPage');
     if(!page){
       page=document.createElement('section');page.id='hamzaFullPage';
-      page.innerHTML='<button class="hamzaBack" type="button">↩️ رجوع</button><div class="hamzaContent"><div class="hamzaTitle">الاشي الوحيد الي بقلب حمزة هو انت</div><div class="hamzaLine g">💚بحبك بيان💚</div><div class="hamzaLine p">🩷بحبك بيون🩷</div><div class="hamzaLine r">❤️بحبك بيونتي❤️</div></div>';
+      page.innerHTML='<button class="hamzaBack" type="button">↩️ رجوع</button><div class="hamzaContent"><div class="hamzaTitle">الاشي الوحيد الي بقلب حمزة هو انت</div><div class="hamzaLine g">💚بحبك بيان💚</div><div class="hamzaLine p">🩷🩷بحبك بيون🩷🩷</div><div class="hamzaLine r">❤️بحبك بيونتي❤️</div></div>';
       document.body.appendChild(page);
       page.querySelector('.hamzaBack').onclick=()=>{page.classList.remove('show');if(audio){audio.pause();audio.currentTime=0}document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('start')?.classList.add('active');window.scrollTo(0,0)};
     }
