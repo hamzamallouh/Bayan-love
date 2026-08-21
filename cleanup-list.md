@@ -1,0 +1,1 @@
+Temporary marker files created during editing should be removed before merge.
