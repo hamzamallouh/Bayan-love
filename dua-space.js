@@ -10,6 +10,13 @@ const duas=[
 'اللهم اجعل مستقبل بيان أجمل مما تتمنى، واكتب لها راحةً وسعادةً ورضا، وحقق لها ما فيه خير لها.',
 'اللهم اجمع لبيان بين خير الدنيا ونعيم الآخرة، واحفظها لي، واكتب لنا أيامًا مليئة بالمودة والرحمة والبركة.'
 ];
+
+// 10 أدعية يوميًا: كل يوم مجموعة جديدة من قائمة الـ1000.
+// يُستخدم اليوم المحلي لتحديد المجموعة، مع الرجوع للبداية بعد 100 يوم.
+const dayIndex=Math.floor(Date.now()/86400000)%100;
+const start=dayIndex*10;
+const dailyDuas=duas.slice(start,start+10);
+const activeDuas=dailyDuas.length===10?dailyDuas:duas.slice(0,10);
 let index=0;
 const text=document.getElementById('duaText');
 const progress=document.getElementById('progress');
@@ -17,12 +24,12 @@ const heart=document.getElementById('nextHeart');
 const hint=document.getElementById('hint');
 function render(){
  text.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'translateY(0)'}],{duration:450,easing:'ease-out'});
- text.textContent=duas[index];
+ text.textContent=activeDuas[index];
  progress.textContent=`الدعاء ${['١','٢','٣','٤','٥','٦','٧','٨','٩','١٠'][index]} من ١٠`;
 }
 function hearts(count=10){for(let i=0;i<count;i++){const h=document.createElement('span');h.className='float-heart';h.textContent=['❤️','💗','💖','💕'][Math.floor(Math.random()*4)];h.style.left=(10+Math.random()*80)+'vw';h.style.top=(70+Math.random()*20)+'vh';h.style.fontSize=(14+Math.random()*20)+'px';h.style.animationDelay=(Math.random()*.5)+'s';document.body.appendChild(h);setTimeout(()=>h.remove(),3000)}}
 function next(){
- if(index<duas.length-1){index++;render();hearts(5);return}
+ if(index<activeDuas.length-1){index++;render();hearts(5);return}
  document.getElementById('duaCard').classList.add('done');
  text.innerHTML='❤️ بحبك بيان ❤️<br><small style="font-family:system-ui;font-size:.55em;color:rgba(255,255,255,.7)">الله يحفظك ويسعد قلبك دائمًا</small>';
  progress.textContent='خلصت الدعوات العشر 🤍';
