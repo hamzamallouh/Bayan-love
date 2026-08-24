@@ -1,0 +1,22 @@
+(()=>{
+const rounds=[
+{type:'joke',title:'نكتة سريعة 😂',html:'مرة واحد سأل صاحبه: ليش بتفتح الثلاجة كل شوي؟<br>قاله: <b>بستنى الشبكة تمسك.</b> 😂<small>إذا ضحكتي من هاي… استني اللي بعدها 😭</small>'},
+{type:'joke',title:'مستوى السخافة 🤦‍♂️',html:'مرة واحد راح يشتري نظارة…<br>البائع سأله: نظر ولا شمس؟<br>قاله: <b>لا، حمزة.</b> 😂<small>آسف… أنا كمان مش فاهم.</small>'},
+{type:'choice',title:'مين قالها؟ 👀',question:'«أنا مش زعلانة… بس بدي أحكي معك شوي.»',choices:['بيان ❤️','حمزة 😂','الاثنين 😭'],answer:0,success:'الجواب الصح غالبًا: بيان 😂❤️'},
+{type:'joke',title:'موقف حمزة 😂',html:'حمزة: اليوم بنام بكير.<br>أيضًا حمزة الساعة 2:47: <b>طيب اسمعي آخر شغلة بس…</b> 😭<small>وبعدين آخر شغلة إلها 17 جزء.</small>'},
+{type:'choice',title:'اختبار النجاة 😂',question:'بيان قالت: «ما بدي شي…» شو التصرف الصحيح؟',choices:['أصدقها فورًا','أسألها مرة ثانية','أجهز خطة طوارئ كاملة 😭'],answer:2,success:'ممتاز! عندك فرصة تنجو 😂❤️'},
+{type:'joke',title:'الضربة الخفيفة 🥲',html:'أنا لما أقرر أكون شخص ناضج وهادئ…<br>وبعدين أشوف رسالة من الشخص اللي بحبه: <b>«وينك؟»</b><br><br>انتهت مرحلة النضج. 😂❤️'},
+{type:'choice',title:'آخر اختبار 😈',question:'مين أحلى؟',choices:['بيان 🌷','بيان ❤️','أكيد بيان 😭❤️'],answer:2,success:'إجابة ممتازة. ما كان في خيارات ثانية أصلًا 😂❤️'}
+];
+let i=0,score=0,started=false;
+const $=s=>document.querySelector(s);
+function sound(){const a=new Audio(encodeURI('ضحكة.mp3'));a.volume=.9;a.currentTime=0;a.play().catch(()=>{});}
+function confetti(){for(let n=0;n<28;n++){const e=document.createElement('span');e.className='lm-confetti';e.textContent=['😂','❤️','💗','✨','🤣'][n%5];e.style.left='50vw';e.style.top='50vh';e.style.setProperty('--x',`${Math.random()*460-230}px`);e.style.setProperty('--y',`${Math.random()*520-260}px`);document.body.appendChild(e);setTimeout(()=>e.remove(),1300)}}
+function float(){const e=document.createElement('span');e.className='lm-float';e.textContent=['😂','🤣','❤️','💗','✨'][Math.floor(Math.random()*5)];e.style.left=Math.random()*100+'vw';e.style.setProperty('--x',(Math.random()*180-90)+'px');e.style.animationDuration=(7+Math.random()*5)+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),13000)}
+setInterval(float,1100);for(let n=0;n<5;n++)setTimeout(float,n*500);
+function render(){const r=rounds[i];$('#lmCounter').textContent=`${i+1} / ${rounds.length}`;$('#lmTitle').textContent=r.title;$('#lmResult').textContent='';const c=$('#lmContent');c.classList.remove('pop');void c.offsetWidth;c.classList.add('pop');if(r.type==='choice'){c.innerHTML=`<div class="lm-choice"><div class="lm-joke">${r.question}</div>${r.choices.map((x,k)=>`<button data-choice="${k}">${x}</button>`).join('')}</div>`;c.querySelectorAll('[data-choice]').forEach(b=>b.onclick=()=>choose(+b.dataset.choice));}else c.innerHTML=`<div class="lm-joke">${r.html}<div style="margin-top:20px"><button class="lm-btn" id="lmGotIt">😂 ضحكتني، اللي بعدها</button></div></div>`;if($('#lmGotIt'))$('#lmGotIt').onclick=next}
+function choose(k){const r=rounds[i];if(k===r.answer){score++;$('#lmResult').textContent=r.success;confetti();sound();setTimeout(next,1200)}else{$('#lmResult').textContent=['قريبة 😂 جربي مرة ثانية','هههه لااا 😭','فكري فيها شوي 😂'][Math.floor(Math.random()*3)];sound()}}
+function next(){if(!started)return;i++;if(i>=rounds.length)return finish();sound();render()}
+function finish(){sound();confetti();$('#lmArena').classList.remove('active');$('#lmWin').classList.add('show');$('#lmScore').textContent=`ضحكنا ${score} مرات من ${rounds.length} تحديات ❤️`}
+window.startLaughMission=()=>{started=true;i=0;score=0;$('#lmStart').style.display='none';$('#lmArena').classList.add('active');render();sound()};window.nextLaugh=next;window.restartLaugh=()=>{$('#lmWin').classList.remove('show');$('#lmArena').classList.remove('active');$('#lmStart').style.display='flex';started=false};
+})();
