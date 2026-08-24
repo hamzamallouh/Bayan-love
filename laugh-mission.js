@@ -18,7 +18,7 @@ const $=s=>document.querySelector(s);
 function laugh(){const a=new Audio(encodeURI('ضحكة.mp3'));a.preload='auto';a.volume=.9;a.currentTime=0;a.play().catch(()=>{});confetti();}
 window.playLaughSound=laugh;
 function confetti(){for(let n=0;n<18;n++){const e=document.createElement('span');e.className='lm-confetti';e.textContent=['😂','❤️','💗','✨','🤣'][n%5];e.style.left='50vw';e.style.top='52vh';e.style.setProperty('--x',`${Math.random()*420-210}px`);e.style.setProperty('--y',`${Math.random()*420-210}px`);document.body.appendChild(e);setTimeout(()=>e.remove(),1200)}}
-function float(){const e=document.createElement('span');e.className='lm-float';e.textContent=['😂','🤣','❤️','💗','✨','😌'][Math.floor(Math.random()*6)];e.style.left=Math.random()*100+'vw';e.style.setProperty('--x',(Math.random()*180-90)+'px');e.style.animationDuration=(7+Math.random()*5)+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),13000)}
+function float(){const e=document.createElement('span');e.className='lm-float';e.textContent=['😂','🤣','❤️','💗','✨','😌'][Math.floor(Math.random()*6)];e.style.left=Math.random()*100+'vw';e.style.setProperty('--x',(Math.random()*180-90)+'px';e.style.animationDuration=(7+Math.random()*5)+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),13000)}
 setInterval(float,1100);for(let n=0;n<6;n++)setTimeout(float,n*450);
 function likedButton(){return `<button class="lm-btn" id="lmLiked">😂 ضحكتني! شغّلي الضحكة</button>`}
 function nextButton(){return `<button class="lm-btn alt" id="lmNextBtn">➡️ اللي بعدها</button>`}
@@ -34,6 +34,6 @@ if(r.type==='choice'){
 }
 function choose(k){const r=rounds[i];const after=$('#lmAfterChoice');if(k===r.answer){score++;$('#lmResult').textContent=r.success;confetti()}else{$('#lmResult').textContent=['قريبة 😂 جرّبي مرة ثانية','هههه لا 😭','فكري فيها شوي 😂','جواب خطير… بس مش هو 😂'][Math.floor(Math.random()*4)];}after.innerHTML=`<div class="lm-actions-inner">${likedButton()}${nextButton()}</div>`;$('#lmLiked').onclick=()=>{laugh();$('#lmResult').textContent='😂❤️ هاي الضحكة محسوبة رسميًا!'};$('#lmNextBtn').onclick=next}
 function next(){if(!started)return;i++;if(i>=rounds.length)return finish();render()}
-function finish(){laugh();$('#lmArena').classList.remove('active');$('#lmWin').classList.add('show');$('#lmScore').textContent=`خلصنا ${rounds.length} تحديات، والنتيجة: ${score} إجابات صح ❤️`}
+function finish(){confetti();$('#lmArena').classList.remove('active');$('#lmWin').classList.add('show');$('#lmScore').textContent=`خلصنا ${rounds.length} تحديات، والنتيجة: ${score} إجابات صح ❤️`}
 window.startLaughMission=()=>{started=true;i=0;score=0;$('#lmStart').style.display='none';$('#lmArena').classList.add('active');render()};window.nextLaugh=next;window.restartLaugh=()=>{$('#lmWin').classList.remove('show');$('#lmArena').classList.remove('active');$('#lmStart').style.display='flex';started=false};
 })();
