@@ -1,0 +1,30 @@
+const chapters=[
+{icon:'🌹',title:'قبل ما نبدأ...',html:'<p>في يوم من الأيام كان في شخصين، وكل واحد فيهم عنده حكايته.</p><p><b>وبعدين إجى يوم... وصارت الحكايتين حكاية واحدة. ❤️</b></p><div class="memory">مش مهم قديش مرّ وقت... المهم إن في ذكرى كل ما رجعنا إلها بنبتسم.</div>'},
+{icon:'💍',title:'اليوم الذي صار فيه «نحن»',html:'<p>في ذكريات بنصورها بالكاميرا، وذكريات بنحتفظ فيها بالقلب.</p><div class="timeline"><div class="time-node">البداية 🌱</div><div class="time-node">المشاعر ❤️</div><div class="time-node active">الخطبة 💍</div><div class="time-node">اليوم ✨</div><div class="time-node">المستقبل ♾️</div></div><p>وهذه الذكرى بالنسبة إلي مش مجرد تاريخ... هي علامة على بداية فصل أجمل.</p>'},
+{icon:'💗',title:'لو كان قلبي يحكي',html:'<p>اضغطي على القلب... كل ضغطة بتخلي القلب يحكي جملة مخبّاية.</p><div class="heart" onclick="heartMessage()">❤️</div><div class="heart-msg" id="heartMsg"></div>'},
+{icon:'🔐',title:'الصندوق السري',html:'<p>ثلاثة أسئلة عن حمزة وبيان. جاوبيهم كلهم صح عشان تفتحي الصندوق. 👀</p><div class="secret-card"><div style="font-size:52px">📦</div><p>الصندوق ما بيفتح إلا لبيان اللي بتعرف حمزة منيح. ❤️</p><button class="ann-btn" onclick="openSecret()">🔑 حاولي تفتحيه</button></div>'},
+{icon:'⭐',title:'المستقبل الذي لم نكتبه بعد',html:'<p>اختاري نجمة... كل نجمة فيها أمنية صغيرة من المستقبل.</p><div class="stars-wrap" id="wishStars"></div><div class="wish-text" id="wishText">اختاري نجمة ✨</div>'}
+];
+let chapter=0, heartIndex=0, quizIndex=0, unlocked=false;
+const heartMessages=['أنا فخور فيكِ ❤️','وجودك بحياتي نعمة.','ضحكتك من أحب الأشياء عندي.','كل يوم معك له معنى أجمل.','لسا عندي كلام كثير إلك...','بس أهم جملة: بحبك يا بيان. ❤️'];
+const wishes=['بيتنا الصغير الكبير بقلبنا 🏡','قهوة الصبح سوا ☕','سفرية نضحك فيها من أولها لآخرها ✈️','أيام هادية وحلوة 🌙','ذكريات أكثر من قدرتنا على العد 📸','نبقى نختار بعض كل يوم ❤️'];
+function $(id){return document.getElementById(id)}
+function startAnniversary(){ $('annIntro').classList.remove('active');$('annJourney').classList.add('active');renderChapter(); }
+function renderChapter(){const c=chapters[chapter];$('annPanel').innerHTML=`<div class="chapter"><div class="chapter-icon">${c.icon}</div><h2>${c.title}</h2>${c.html}</div>`;$('annStep').textContent=`${chapter+1} / ${chapters.length}`;$('annProgress').style.width=`${((chapter+1)/chapters.length)*100}%`;if(chapter===chapters.length-1){$('annNext').textContent='🎁 افتحي هدية الذكرى';$('annNext').onclick=()=>openGift()}else{$('annNext').textContent='كمّلي الرحلة ✨';$('annNext').onclick=nextChapter()}if(chapter===4)renderStars();}
+function nextChapter(){chapter++;if(chapter>=chapters.length){openGift();return}renderChapter();window.scrollTo({top:0,behavior:'smooth'})}
+function heartMessage(){if(heartIndex<heartMessages.length){$('heartMsg').textContent=heartMessages[heartIndex++];if(heartIndex===heartMessages.length)confetti()}}
+function renderStars(){const wrap=$('wishStars');if(!wrap||wrap.children.length)return;wishes.forEach((w,i)=>{const b=document.createElement('button');b.className='wish-star';b.textContent='⭐';b.onclick=()=>{$('wishText').textContent=w;document.querySelectorAll('.wish-star').forEach(x=>x.classList.remove('revealed'));b.classList.add('revealed')};wrap.appendChild(b)})}
+function openSecret(){quizIndex=0;unlocked=false;$('secretModal').classList.add('show');$('secretModal').setAttribute('aria-hidden','false');renderQuestion()}
+function closeSecret(){$('secretModal').classList.remove('show');$('secretModal').setAttribute('aria-hidden','true')}
+const questions=[
+{q:'شو بيان بالنسبة لحمزة؟',opts:['حياتي ❤️','روحي ❤️','عمري ❤️','جميع ما ذكر ❤️❤️'],correct:3},
+{q:'شو اللقب الي بيان بتحكيه لحمزة؟',opts:['ملوخية ☘️','خمسة 5️⃣','دُب 🐻','دِب 🫠'],correct:3},
+{q:'مين حمزة بحب أكثر إشي بالعالم؟',opts:['بيان ❤️','بيون ❤️','بيونتي ❤️','جميع ما ذكر ❤️❤️❤️'],correct:3}
+];
+function renderQuestion(){const q=questions[quizIndex];$('quizArea').innerHTML=`<div class="quiz-q">السؤال ${quizIndex+1}: ${q.q}</div><div class="quiz-options">${q.opts.map((o,i)=>`<button class="quiz-option" onclick="answerQuiz(${i})">${o}</button>`).join('')}</div><div class="quiz-status" id="quizStatus"></div>`}
+function answerQuiz(i){const q=questions[quizIndex];const buttons=document.querySelectorAll('.quiz-option');buttons[i].classList.add(i===q.correct?'correct':'wrong');if(i!==q.correct){$('quizStatus').textContent='قريبة... جرّبي مرة ثانية 😌❤️';return}if(quizIndex<questions.length-1){$('quizStatus').textContent='صح! 😏 كمّلي...';setTimeout(()=>{quizIndex++;renderQuestion()},650)}else{unlocked=true;confetti();$('quizArea').innerHTML='<div class="quiz-q">🔓 الصندوق انفتح!</div><div style="font-size:70px;margin:12px">🎁</div><p style="color:#ffdbe9;line-height:1.9">كنت عارف إنك بتعرفيه... ❤️<br><b>والسر الحقيقي؟ حمزة بحب بيان بكل أسمائها.</b></p><button class="ann-btn" onclick="closeSecret()">رجعيني للرحلة ✨</button>';}}
+function openGift(){$('giftModal').classList.add('show');$('giftModal').setAttribute('aria-hidden','false');confetti()}
+function closeGift(){$('giftModal').classList.remove('show');$('giftModal').setAttribute('aria-hidden','true');chapter=0;$('annJourney').classList.remove('active');$('annIntro').classList.add('active')}
+function confetti(){for(let i=0;i<18;i++){const s=document.createElement('span');s.textContent=['❤️','✨','💗','💍'][i%4];s.style.position='fixed';s.style.zIndex=100;s.style.left=(20+Math.random()*60)+'vw';s.style.top=(30+Math.random()*30)+'vh';s.style.fontSize=(14+Math.random()*18)+'px';s.style.transition='transform 1s ease,opacity 1s ease';document.body.appendChild(s);requestAnimationFrame(()=>{s.style.transform=`translate(${(Math.random()-.5)*260}px,${-80-Math.random()*260}px) rotate(${Math.random()*360}deg)`;s.style.opacity=0});setTimeout(()=>s.remove(),1100)}}
+function makeStars(){const box=$('annStars');for(let i=0;i<65;i++){const s=document.createElement('span');s.className='ann-star';const z=1+Math.random()*2.5;s.style.width=z+'px';s.style.height=z+'px';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDelay=(Math.random()*2)+'s';box.appendChild(s)}}
+makeStars();
