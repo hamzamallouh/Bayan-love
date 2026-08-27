@@ -6,8 +6,8 @@ const chapters=[
 {icon:'⭐',title:'المستقبل الذي لم نكتبه بعد',html:'<p>اختاري نجمة... كل نجمة فيها أمنية صغيرة من المستقبل.</p><div class="stars-wrap" id="wishStars"></div><div class="wish-text" id="wishText">اختاري نجمة ✨</div>'}
 ];
 let chapter=0, heartIndex=0, quizIndex=0;
-const heartMessages=['أنا فخور فيكِ ❤️','وجودك بحياتي نعمة.','ضحكتك من أحب الأشياء عندي.','كل يوم معك له معنى أجمل.','لسا عندي كلام كثير إلك...','بس أهم جملة: بحبك يا بيان. ❤️'];
-const wishes=['بيتنا الصغير الكبير بقلبنا 🏡','قهوة الصبح سوا ☕','سفرية نضحك فيها من أولها لآخرها ✈️','أيام هادية وحلوة 🌙','ذكريات أكثر من قدرتنا على العد 📸','نبقى نختار بعض كل يوم ❤️'];
+const heartMessages=['انا بعشقك و بموت فيك ❤️','وجودك بحياتي اكبر نعمة ❤️','ضحكتك مصدر سعادتي ❤️','كل يوم معك هو احلى يوم بالحياة ❤️','حبي الك ما بنوصف والله عسولتي ❤️','بس اهم اشي... بحبك بيونتي ❤️'];
+const wishes=['أعيش معك كل الأيام الحلوة اللي لسا ناطرينا ❤️','نبني بيتنا ونملاه ضحك وحب وراحة 🏡❤️','نسافر سوا ونصنع ذكريات ما تنسى ✈️❤️','تضل ضحكتك هي أجمل صوت ببيتنا كل يوم 😂❤️','كل سنة نرجع لهاليوم ونحكي: شو كنا محظوظين ببعض 💍❤️','نكبر سوا... وتضل إنتِ أجمل شيء صار بحياتي ♾️❤️','نحقق أحلامنا وحدة وحدة وإيدنا بإيد بعض 🤝❤️','ويضل بينا نفس الحب... بس أكبر وأجمل مع كل سنة ❤️'];
 function $(id){return document.getElementById(id)}
 function startAnniversary(){ $('annIntro').classList.remove('active');$('annJourney').classList.add('active');renderChapter(); }
 function renderChapter(){const c=chapters[chapter];$('annPanel').innerHTML=`<div class="chapter"><div class="chapter-icon">${c.icon}</div><h2>${c.title}</h2>${c.html}</div>`;$('annStep').textContent=`${chapter+1} / ${chapters.length}`;$('annProgress').style.width=`${((chapter+1)/chapters.length)*100}%`;if(chapter===chapters.length-1){$('annNext').textContent='🎁 افتحي هدية الذكرى';$('annNext').onclick=()=>openGift()}else{$('annNext').textContent='كمّلي الرحلة ✨';$('annNext').onclick=()=>nextChapter()}if(chapter===4)renderStars();}
