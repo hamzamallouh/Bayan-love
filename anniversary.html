@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#100817">
+<title>ذكرى خطبتنا — بيان وحمزة ❤️</title>
+<link rel="stylesheet" href="anniversary.css?v=1">
+</head>
+<body class="ann-body">
+<div class="ann-stars" id="annStars"></div>
+<button class="ann-home" onclick="location.href='index.html'">⌂ الرئيسية</button>
+<main class="ann-page">
+  <section class="ann-screen active" id="annIntro">
+    <div class="ann-kicker">💍 ذكرى خطبتنا</div>
+    <div class="ann-ring">💍</div>
+    <h1>اليوم مش يوم عادي...</h1>
+    <p class="ann-lead">اليوم ذكرى اليوم اللي صارت فيه حكايتنا أوضح، وصار لكِ مكان رسمي بقلبي وحياتي. ❤️</p>
+    <div class="ann-divider">✦ ✦ ✦</div>
+    <p class="ann-soft">حضّرتلك رحلة صغيرة... فيها ذكرى، رسالة، سر، مستقبل، ومفاجأة بالنهاية.</p>
+    <button class="ann-btn" onclick="startAnniversary()">✨ افتحي ذكرتنا</button>
+  </section>
+
+  <section class="ann-screen" id="annJourney">
+    <div class="ann-top"><span>رحلة اليوم</span><span id="annStep">1 / 5</span></div>
+    <div class="ann-progress"><i id="annProgress"></i></div>
+    <div class="ann-panel" id="annPanel"></div>
+    <div class="ann-nav"><button class="ann-btn ghost" id="annNext" onclick="nextChapter()">كمّلي الرحلة ✨</button></div>
+  </section>
+</main>
+
+<div class="ann-modal" id="secretModal" aria-hidden="true">
+  <div class="ann-modal-box">
+    <button class="ann-close" onclick="closeSecret()">×</button>
+    <div class="ann-lock">🔐</div>
+    <h2>الصندوق السري</h2>
+    <p>ثلاثة أسئلة... وإذا عرفتي حمزة منيح، القفل رح يفتح. ❤️</p>
+    <div id="quizArea"></div>
+  </div>
+</div>
+
+<div class="ann-modal" id="giftModal" aria-hidden="true">
+  <div class="ann-modal-box gift-box">
+    <div class="gift">🎁</div>
+    <h2>هدية الذكرى</h2>
+    <p>في أشياء بالحياة بنحتفل فيها مرة، وفي أشياء بنحتفل فيها كل سنة لأننا بنحب نتذكر كيف بدأت.</p>
+    <div class="ann-letter">
+      <p>بيان ❤️</p>
+      <p>اليوم ذكرى خطبتنا، بس بالنسبة إلي هي أكثر من تاريخ. هي ذكرى اليوم اللي صار عندي سبب جديد أفرح بالمستقبل.</p>
+      <p>إذا كان هذا أول فصل من حكايتنا، فأنا متحمس لكل الفصول اللي لسا ما كتبناها... معك.</p>
+      <strong>كل سنة وإنتِ بيانتي، وكل سنة وحكايتنا أحلى. ❤️</strong>
+    </div>
+    <button class="ann-btn" onclick="closeGift()">أكمل للنهاية ✨</button>
+  </div>
+</div>
+<script src="anniversary.js?v=1"></script>
+</body>
+</html>
