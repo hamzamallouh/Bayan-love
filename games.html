@@ -23,7 +23,7 @@ body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Segoe UI",sa
 .choice:hover,.suspect:hover{background:#ffffff12;transform:translateY(-1px)}.choice:disabled{opacity:.55;cursor:default}
 .feedback{min-height:30px;margin-top:12px;color:#ffb2cf;font-weight:700}.hidden{display:none!important}
 .code{display:flex;gap:8px;margin-top:12px}.code input{flex:1;background:#fff;color:#111;border:0;border-radius:13px;padding:13px;text-align:center;font-size:18px}
-.code button,.finalBtn{border:0;border-radius:13px;background:#e05f96;color:#fff;padding:12px 17px;font-weight:800;cursor:pointer}
+.code button,.finalBtn,.startBtn{border:0;border-radius:13px;background:#e05f96;color:#fff;padding:12px 17px;font-weight:800;cursor:pointer}.startBtn{display:block;width:100%;margin:16px 0 2px;font-size:17px;box-shadow:0 8px 25px #e05f9638}
 .suspects{display:grid;grid-template-columns:1fr 1fr;gap:10px}.suspect{text-align:center}
 .letter{font-size:17px;line-height:2}.final{margin-top:23px;text-align:center;padding:24px;border-radius:22px;background:linear-gradient(145deg,#3b162f,#15101c);border:1px solid #ff78aa35}
 .seal{font-size:48px}.answer{font-size:23px;font-weight:900;color:#ffacc9}.note{opacity:.72;font-size:13px}.heartline{font-size:28px;letter-spacing:6px;opacity:.75}
@@ -65,6 +65,8 @@ body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Segoe UI",sa
 <p><b>آخر مرة شوهد فيها القلب:</b> قبل أن يعرف صاحبه أن وجود شخص واحد ممكن يغيّر معنى أيامه.</p>
 <p><b>ملاحظة المحقق:</b> لا توجد آثار عنف، ولا يوجد دليل على أن القلب حاول الهرب. الغريب أن صاحب القلب نفسه لم يطلب استعادته.</p>
 </div>
+
+<button class="startBtn" onclick="goToStage1()">ابدئي التحقيق 🔍</button>
 
 <div class="progress"><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
 
@@ -228,6 +230,10 @@ const $=id=>document.getElementById(id);
 function bars(n){document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('on',i<n))}
 function show(id){$(id).classList.remove('hidden')}
 function hide(id){$(id).classList.add('hidden')}
+
+function goToStage1(){
+ $('s1').scrollIntoView({behavior:'smooth',block:'start'});
+}
 
 function check1(){
  if($('c1').value.trim()==='2606'){hide('s1');show('s2');bars(2)}
