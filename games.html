@@ -48,7 +48,15 @@ body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Segoe UI",sa
 .prayer:before{content:"♡";color:#ff9fc5;font-size:22px;display:block;margin-bottom:3px}
 .endLove{margin-top:24px;padding:20px;border-radius:22px;background:#ff6a9f12;border:1px solid #ff8ebc33;color:#ffe1ed;line-height:2;font-size:19px}
 .signature{margin-top:15px;color:#ffb5d0;font-weight:800;font-size:20px}
-.songNote{margin-top:14px;font-size:13px;opacity:.78}.songBtn{margin-top:12px;border:0;border-radius:14px;background:#e05f96;color:#fff;padding:12px 20px;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 8px 25px #e05f9638}.songBtn:active{transform:scale(.98)}
+.songNote{margin-top:14px;font-size:13px;opacity:.78}
+.songBtn{display:none}
+.revealGlow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 45%,#ff8fbd18,transparent 38%);animation:glow 2.8s ease-in-out infinite}
+@keyframes glow{50%{opacity:.45;transform:scale(1.08)}}
+.burstHeart{position:fixed;z-index:50;pointer-events:none;font-size:var(--s);left:50%;top:48%;animation:burst 1.8s ease-out forwards}
+@keyframes burst{0%{opacity:0;transform:translate(-50%,-50%) scale(.3)}12%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) rotate(var(--r)) scale(1.35)}}
+.loveLine{margin:12px auto;max-width:620px;color:#ffd5e5;font-size:17px;line-height:2;opacity:.9}
+.loveLine b{color:#ffb2ce}
+
 @media(max-width:500px){.suspects{grid-template-columns:1fr}.head h1{font-size:25px}.romantic{padding:24px 14px}.reveal h2{font-size:24px}.phrase{font-size:17px}}
 </style>
 </head>
@@ -188,8 +196,10 @@ body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Segoe UI",sa
 </div>
 
 <div class="reveal">
+<div class="revealGlow"></div>
 <div class="bigHeart">❤️</div>
 <h2>خلصت القضية… بس في شغلة ما خلصت.</h2>
+<p class="loveLine"><b>بيونتي،</b> لو كل هالقضية كانت عشان أوصلك لهون… فهي أحلى قضية دخلت فيها بحياتي ❤️</p>
 <p class="lead">كل الأدلة كانت بتحكي عن نفس الشي…<br>إنه وجودك بحياة حمزة صار إله معنى أكبر من أي دليل.</p>
 <div id="phrase" class="phrase">بيونتي… في أشياء ما بدها دليل عشان تكون حقيقة ❤️</div>
 
@@ -207,6 +217,11 @@ body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Segoe UI",sa
 <div class="prayer">يا رب اجعل القرآن نورًا في قلب بيان، وراحة في صدرها، وبركة في عمرها، واكتب إلها بكل حرف حسنات، واجعلها من أهل القرآن الذين هم أهلك وخاصتك.</div>
 <div class="prayer">يا رب كل أمنية حلوة في قلب بيان وما فيها إلا خير، حققها إلها على أجمل وقت وأجمل طريقة، ولا تجعل إلها دعوة إلا وكتبت إلها فيها خيرًا، ولا تجعل إلها طريقًا إلا وفتحت إلها فيه أبواب فضلك.</div>
 <div class="prayer">يا رب احفظنا من كل شيء ممكن يفرق بينا، وخلّي المودة بيننا تكبر مع الأيام، واكتب إلنا الخير وين ما كان، وارضَ عنا وارضّنا، واجعل نهاية كل دعاء دعاءً مستجابًا يا رب.</div>
+<div class="prayer">يا رب خلي قلب بيان مرتاح، ونفسها مطمئنة، وأيامها خفيفة عليها، وكل باب خير يكون قدامها مفتوح، وكل باب شر يكون بعيد عنها يا رب.</div>
+<div class="prayer">يا رب إذا كان في قلب بيان أمنية ما حكتها لحد، فأنت أعلم فيها، فحقق إلها منها الخير وأفرح قلبها فيها، ولا تجعل انتظارها يطول يا رب.</div>
+<div class="prayer">يا رب احفظ أهل بيان إلها واحفظها إلهم، وخلّي المحبة بينهم دايمة، ولا تشوف بعينها ولا تسمع بأذنها ولا بقلبها إلا كل خير وراحة وسعادة.</div>
+<div class="prayer">يا رب اجعلني لبيان راحة وأمان وسند، واجعلها إلي راحة وأمان وسند، وعلّمنا دايمًا كيف نكون لبعضنا خير، وكيف نحافظ على المودة والرحمة بيننا.</div>
+<div class="prayer">يا رب كل يوم جديد على بيان اجعله أحسن من اللي قبله، وكل تعب مرّ عليها عوّضها عنه، وكل دمعة نزلت من عينها اجعل بعدها فرحة تليق بقلبها.</div>
 
 <div class="endLove">
 مش عارف إذا القضية انحلت ولا لأ…<br>
@@ -215,7 +230,7 @@ body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Segoe UI",sa
 وبدعي ربنا كل يوم إنه يحفظك ويسعدك ويكتبلك كل الخير اللي بالدنيا.
 <div class="signature">— حمزة</div>
 </div>
-<p class="songNote" id="songStatus">🎵 حاولت أشغّل الأغنية تلقائيًا ❤️</p><button class="songBtn" id="songBtn" onclick="playSongManually()">🎵 تشغيل الأغنية ❤️</button>
+<p class="songNote" id="songStatus">🎵 الأغنية شغّالة ❤️</p>
 </div>
 </section>
 </section>
@@ -291,16 +306,6 @@ function startSong(){
   });
  }
 }
-function playSongManually(){
- const song=$('caseSong');
- song.muted=false;
- song.volume=1;
- song.play().then(()=>{
-  const status=$('songStatus');
-  if(status) status.textContent='🎵 الأغنية شغّالة ❤️';
- }).catch(()=>{});
-}
-
 function startPhrases(){
  const phrases=[
   'بيونتي… في أشياء ما بدها دليل عشان تكون حقيقة ❤️',
@@ -312,7 +317,16 @@ function startPhrases(){
   'بحبك بيون… وبحب كل لحظة بتكوني فيها مبسوطة.',
   'عسولتي، لو في دليل على الراحة كان اسمك أول سطر فيه.',
   'في أشياء كثيرة ممكن تنكتب… بس أهمها: بحبك بيونتي.',
-  'الحكم الأخير: خليكي دايمًا بخير، والباقي كله بهون ❤️'
+  'الحكم الأخير: خليكي دايمًا بخير، والباقي كله بهون ❤️',
+  'بيونتي، وجودك من الأشياء اللي ما بدي الأيام تاخذها مني.',
+  'لو سألوني عن أحلى دليل بالقضية… بحكيلهم اسمها بيان.',
+  'ضحكتك مش تفصيل صغير… هاي من الأشياء اللي بتخلّي اليوم أحلى.',
+  'بيون، ما بدي من هالقضية غير إنك تظلي مبسوطة وبخير.',
+  'في اسم كل ما ينحكى، بحس الدنيا صارت أهدى شوي… بيان ❤️',
+  'عسولتي، يمكن القضية سرقة قلب… بس أنا اللي كنت راضي عن السرقة من أولها.',
+  'أهم اشي طلع من التحقيق كله: إني بحب وجودك بحياتي كثير.',
+  'بيونتي، بين كل الأدلة والرسائل والظروف… إنتِ كنتِ الحقيقة الواضحة.',
+  'ولو أعيد التحقيق ألف مرة، كل الطرق رح ترجعني لنفس الاسم: بيان ❤️'
  ];
  let i=0;
  clearInterval(phraseTimer);
@@ -326,9 +340,24 @@ function startPhrases(){
  },4000);
 }
 
+function heartBurst(){
+ const hearts=['❤️','💗','💖','💕','💘','💞','♡'];
+ for(let i=0;i<34;i++){
+  const h=document.createElement('span');
+  h.className='burstHeart';
+  h.textContent=hearts[Math.floor(Math.random()*hearts.length)];
+  h.style.setProperty('--s',(16+Math.random()*24)+'px');
+  h.style.setProperty('--x',(-180+Math.random()*360)+'px');
+  h.style.setProperty('--y',(-220+Math.random()*440)+'px');
+  h.style.setProperty('--r',(-35+Math.random()*70)+'deg');
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),1900);
+ }
+}
 function finish(i){
  if(i===1){
   startSong();
+  heartBurst();
   hide('s6');
   show('final');
   bars(6);
