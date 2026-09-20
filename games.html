@@ -1,14 +1,61 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#090811"><title>🎮 الألعاب — القضية 26/06</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090811">
+<title>🎮 الألعاب — القضية 26/06</title>
 <style>
-*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:radial-gradient(circle at 50% -10%,#4a173d,#090811 62%);color:#faf5f9;padding:18px}.wrap{max-width:780px;margin:auto}.back{display:inline-block;color:#fff;text-decoration:none;margin:4px 0 15px;opacity:.8}.case{background:rgba(255,255,255,.055);border:1px solid #ffffff18;border-radius:26px;padding:22px;box-shadow:0 25px 90px #000b;backdrop-filter:blur(16px)}.head{text-align:center;border-bottom:1px dashed #ffffff25;padding-bottom:19px}.stamp{display:inline-block;border:2px solid #e06a9c;color:#ffb1cf;padding:5px 10px;border-radius:7px;transform:rotate(-2deg);font-weight:900;font-size:11px;letter-spacing:1px}.icon{font-size:56px}.head h1{margin:5px 0;font-size:29px}.head p{opacity:.7}.file,.clue{background:#11101a;border:1px solid #ffffff12;border-radius:17px;padding:16px;margin-top:14px;line-height:1.95}.file b{color:#ff9fc3}.clue{border-right:3px solid #df6197;background:#ffffff07}.stage{margin-top:20px}.stage h2{margin:0 0 8px;font-size:21px}.stage p{line-height:1.9;opacity:.88}.progress{display:flex;gap:5px;margin:18px 0}.dot{height:5px;flex:1;border-radius:10px;background:#ffffff15}.dot.on{background:#e06a9c}.choices{display:grid;gap:10px;margin-top:14px}.choice,.suspect{border:1px solid #ffffff18;background:#ffffff08;color:#fff;border-radius:15px;padding:14px;text-align:right;font-size:16px;cursor:pointer;transition:.2s}.choice:hover,.suspect:hover{background:#ffffff12;transform:translateY(-1px)}.choice:disabled{opacity:.55;cursor:default}.feedback{min-height:30px;margin-top:12px;color:#ffb2cf;font-weight:700}.hidden{display:none!important}.code{display:flex;gap:8px;margin-top:12px}.code input{flex:1;background:#fff;color:#111;border:0;border-radius:13px;padding:13px;text-align:center;font-size:18px}.code button,.finalBtn{border:0;border-radius:13px;background:#e05f96;color:#fff;padding:12px 17px;font-weight:800;cursor:pointer}.suspects{display:grid;grid-template-columns:1fr 1fr;gap:10px}.suspect{text-align:center}.letter{font-size:17px;line-height:2}.final{margin-top:23px;text-align:center;padding:24px;border-radius:22px;background:linear-gradient(145deg,#3b162f,#15101c);border:1px solid #ff78aa35}.seal{font-size:48px}.answer{font-size:23px;font-weight:900;color:#ffacc9}.note{opacity:.72;font-size:13px}.heartline{font-size:28px;letter-spacing:6px;opacity:.75}@media(max-width:500px){.suspects{grid-template-columns:1fr}.head h1{font-size:25px}}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:radial-gradient(circle at 50% -10%,#55183f,#090811 58%);color:#faf5f9;padding:18px;overflow-x:hidden}
+.wrap{max-width:780px;margin:auto;position:relative;z-index:2}
+.back{display:inline-block;color:#fff;text-decoration:none;margin:4px 0 15px;opacity:.8}
+.case{background:rgba(255,255,255,.055);border:1px solid #ffffff18;border-radius:26px;padding:22px;box-shadow:0 25px 90px #000b;backdrop-filter:blur(16px)}
+.head{text-align:center;border-bottom:1px dashed #ffffff25;padding-bottom:19px}
+.stamp{display:inline-block;border:2px solid #e06a9c;color:#ffb1cf;padding:5px 10px;border-radius:7px;transform:rotate(-2deg);font-weight:900;font-size:11px;letter-spacing:1px}
+.icon{font-size:56px}.head h1{margin:5px 0;font-size:29px}.head p{opacity:.7}
+.file,.clue{background:#11101a;border:1px solid #ffffff12;border-radius:17px;padding:16px;margin-top:14px;line-height:1.95}
+.file b{color:#ff9fc3}.clue{border-right:3px solid #df6197;background:#ffffff07}
+.stage{margin-top:20px}.stage h2{margin:0 0 8px;font-size:21px}.stage p{line-height:1.9;opacity:.88}
+.progress{display:flex;gap:5px;margin:18px 0}.dot{height:5px;flex:1;border-radius:10px;background:#ffffff15}.dot.on{background:#e06a9c}
+.choices{display:grid;gap:10px;margin-top:14px}
+.choice,.suspect{border:1px solid #ffffff18;background:#ffffff08;color:#fff;border-radius:15px;padding:14px;text-align:right;font-size:16px;cursor:pointer;transition:.2s}
+.choice:hover,.suspect:hover{background:#ffffff12;transform:translateY(-1px)}.choice:disabled{opacity:.55;cursor:default}
+.feedback{min-height:30px;margin-top:12px;color:#ffb2cf;font-weight:700}.hidden{display:none!important}
+.code{display:flex;gap:8px;margin-top:12px}.code input{flex:1;background:#fff;color:#111;border:0;border-radius:13px;padding:13px;text-align:center;font-size:18px}
+.code button,.finalBtn{border:0;border-radius:13px;background:#e05f96;color:#fff;padding:12px 17px;font-weight:800;cursor:pointer}
+.suspects{display:grid;grid-template-columns:1fr 1fr;gap:10px}.suspect{text-align:center}
+.letter{font-size:17px;line-height:2}.final{margin-top:23px;text-align:center;padding:24px;border-radius:22px;background:linear-gradient(145deg,#3b162f,#15101c);border:1px solid #ff78aa35}
+.seal{font-size:48px}.answer{font-size:23px;font-weight:900;color:#ffacc9}.note{opacity:.72;font-size:13px}.heartline{font-size:28px;letter-spacing:6px;opacity:.75}
+#caseSong{display:none}
+
+.romantic{margin-top:18px;min-height:520px;position:relative;overflow:hidden;border-radius:28px;border:1px solid #ff82b733;background:radial-gradient(circle at 50% 20%,#5b1c48 0,#211024 42%,#0d0a13 78%);padding:28px 20px;box-shadow:0 20px 90px #000c}
+.romantic:before{content:"";position:absolute;inset:-40%;background:radial-gradient(circle,#ff82b722 0 2px,transparent 3px);background-size:34px 34px;animation:stars 18s linear infinite;opacity:.55}
+@keyframes stars{to{transform:translate(34px,34px)}}
+.reveal{position:relative;z-index:3;text-align:center;animation:rise 1.1s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:none}}
+.bigHeart{font-size:74px;filter:drop-shadow(0 0 24px #ff4f9a);animation:pulse 1.7s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.08);filter:drop-shadow(0 0 42px #ff6cae)}}
+.reveal h2{font-size:28px;margin:8px 0;color:#ffd2e4}.reveal .lead{font-size:18px;line-height:2;margin:8px auto 22px;max-width:600px}
+.phrase{min-height:74px;display:flex;align-items:center;justify-content:center;padding:14px 18px;border-radius:18px;background:#ffffff0b;border:1px solid #ff9bc72c;color:#ffe8f1;font-size:19px;line-height:1.9;box-shadow:0 10px 35px #0005;animation:fadePhrase .9s ease both}
+@keyframes fadePhrase{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.hearts{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.floatHeart{position:absolute;bottom:-60px;opacity:0;animation:floatUp var(--d) linear infinite;animation-delay:var(--delay);font-size:var(--s)}
+@keyframes floatUp{0%{transform:translateY(0) scale(.8) rotate(0);opacity:0}12%{opacity:.7}80%{opacity:.35}100%{transform:translateY(-620px) translateX(var(--x)) scale(1.25) rotate(18deg);opacity:0}}
+.divider{margin:30px auto 20px;display:flex;align-items:center;gap:12px;justify-content:center;color:#ffabc9;opacity:.75}.divider:before,.divider:after{content:"";height:1px;width:80px;background:#ffabc955}
+.prayersTitle{font-size:22px;margin:0 0 6px;color:#ffd5e5}.prayersSub{opacity:.72;font-size:14px;margin:0 0 18px}
+.prayer{margin:12px 0;padding:17px 16px;border-radius:19px;background:linear-gradient(145deg,#ffffff0a,#ffffff04);border:1px solid #ffffff12;text-align:right;line-height:2;font-size:16px;box-shadow:0 12px 30px #0004}
+.prayer:before{content:"♡";color:#ff9fc5;font-size:22px;display:block;margin-bottom:3px}
+.endLove{margin-top:24px;padding:20px;border-radius:22px;background:#ff6a9f12;border:1px solid #ff8ebc33;color:#ffe1ed;line-height:2;font-size:19px}
+.signature{margin-top:15px;color:#ffb5d0;font-weight:800;font-size:20px}
+.songNote{margin-top:14px;font-size:12px;opacity:.6}
+@media(max-width:500px){.suspects{grid-template-columns:1fr}.head h1{font-size:25px}.romantic{padding:24px 14px}.reveal h2{font-size:24px}.phrase{font-size:17px}}
 </style>
 </head>
-<body><main class="wrap">
+<body>
+<main class="wrap">
 <a class="back" href="index.html">↩️ رجوع للموقع</a>
+
 <section class="case">
 <div class="head"><div class="stamp">سري للغاية • ملف 26/06</div><div class="icon">🕵️‍♂️❤️</div><h1>🎮 القضية التي لم يكن يجب أن تُحل</h1><p>ملف التحقيق رقم <b>26/06</b> — القضية: <b>سرقة قلب حمزة</b></p></div>
 
@@ -112,16 +159,148 @@
 <div class="file"><b>ملاحظة المحقق:</b><br>حاولت أسترجع قلبي…<br>بس اكتشفت إني مش حابب آخذه أصلًا. ❤️<br><br><span class="heartline">♡ ♥ ♡ ♥ ♡</span></div>
 <p class="note">أُغلقت القضية… لكن الملف لا يزال يحتفظ باسمها في كل صفحة.</p>
 </div>
-</section></main>
+
+<!-- بعد حل القضية: الأغنية والحركات الرومنسية والدعاء -->
+<section id="romanticReveal" class="romantic hidden">
+<div class="hearts">
+<span class="floatHeart" style="left:6%;--d:8s;--delay:0s;--s:18px;--x:25px">♡</span>
+<span class="floatHeart" style="left:18%;--d:10s;--delay:2s;--s:25px;--x:-30px">♥</span>
+<span class="floatHeart" style="left:31%;--d:9s;--delay:1s;--s:16px;--x:40px">♡</span>
+<span class="floatHeart" style="left:45%;--d:11s;--delay:3s;--s:28px;--x:-45px">♥</span>
+<span class="floatHeart" style="left:58%;--d:8s;--delay:1.5s;--s:20px;--x:35px">♡</span>
+<span class="floatHeart" style="left:72%;--d:10s;--delay:4s;--s:24px;--x:-25px">♥</span>
+<span class="floatHeart" style="left:87%;--d:9s;--delay:.5s;--s:18px;--x:30px">♡</span>
+</div>
+
+<div class="reveal">
+<div class="bigHeart">❤️</div>
+<h2>خلصت القضية… بس في شغلة ما خلصت.</h2>
+<p class="lead">كل الأدلة كانت بتحكي عن نفس الشي…<br>إنه وجودك بحياة حمزة صار إله معنى أكبر من أي دليل.</p>
+<div id="phrase" class="phrase">بيونتي… في أشياء ما بدها دليل عشان تكون حقيقة ❤️</div>
+
+<div class="divider">♡</div>
+<h3 class="prayersTitle">وهسا أهم جزء… الدعاء ❤️</h3>
+<p class="prayersSub">لأن أجمل اشي ممكن ينحكى عن بيان، ينحكى بدعوة بيني وبين ربنا.</p>
+
+<div class="prayer">يا رب باسمك الأعظم يا رب يا أحد يا صمد يا من لم يلد ولم يولد ولم يكن له كفواً أحد، أسألك يا الله أن تحفظ بيان وتسعدها وترضى عنها وترضيها، وتخفف عنها وتهون عليها الدنيا، وتجعلها من المفلحين الصالحين المصلحين ممن رضيت عنهم.</div>
+<div class="prayer">يا رب احفظ بيان من كل تعب ومن كل حزن ومن كل شيء ممكن يوجع قلبها، واكتب إلها أيام حلوة وراحة بال وسكينة، وكل ما تتمنى يكون إلها فيه خير قرّبه منها يا رب.</div>
+<div class="prayer">يا رب لا تريني في بيان أي مكروه، ولا تجعل في طريقها شيء يكسر خاطرها، واحفظ ضحكتها وقلبها وروحها، وخليها دايمًا بخير وأسعد مما أتمنى إلها.</div>
+<div class="prayer">يا رب احفظ حبنا، وأدم بيننا المودة والمحبة والرحمة والسكينة والألفة والود، وبارك فيه وزد فيه، واجعل كل يوم بيننا سببًا للخير والقرب منك.</div>
+<div class="prayer">يا رب اجمعني ببيان في الدنيا على خير، واكتب إلنا حياة فيها راحة ومودة ورضا، واجعلنا لبعض عونًا وسندًا، وخلّي أيامنا الجاية أحلى من كل الأيام اللي راحت.</div>
+<div class="prayer">يا رب إذا تعبت بيان فقوّيها، وإذا ضاقت عليها الدنيا وسّعها عليها، وإذا خافت طمّن قلبها، وإذا دعتك بشيء فيه خير إلها فلا ترد إلها دعاء، واكتب إلها فوق اللي تتمناه.</div>
+<div class="prayer">يا رب ارزق بيان من الخير أكثر مما تتمنى، ومن الفرح أكثر مما تتوقع، ومن راحة القلب أكثر مما أقدر أوصف، واحفظها إلي ولأهلها وأحبابها، وبارك بعمرها وأيامها.</div>
+<div class="prayer">يا رب اجعل القرآن نورًا في قلب بيان، وراحة في صدرها، وبركة في عمرها، واكتب إلها بكل حرف حسنات، واجعلها من أهل القرآن الذين هم أهلك وخاصتك.</div>
+<div class="prayer">يا رب كل أمنية حلوة في قلب بيان وما فيها إلا خير، حققها إلها على أجمل وقت وأجمل طريقة، ولا تجعل إلها دعوة إلا وكتبت إلها فيها خيرًا، ولا تجعل إلها طريقًا إلا وفتحت إلها فيه أبواب فضلك.</div>
+<div class="prayer">يا رب احفظنا من كل شيء ممكن يفرق بينا، وخلّي المودة بيننا تكبر مع الأيام، واكتب إلنا الخير وين ما كان، وارضَ عنا وارضّنا، واجعل نهاية كل دعاء دعاءً مستجابًا يا رب.</div>
+
+<div class="endLove">
+مش عارف إذا القضية انحلت ولا لأ…<br>
+بس بعرف شغلة وحدة:<br>
+<b>بحبك بيونتي ❤️</b><br>
+وبدعي ربنا كل يوم إنه يحفظك ويسعدك ويكتبلك كل الخير اللي بالدنيا.
+<div class="signature">— حمزة</div>
+</div>
+<p class="songNote">الأغنية شغّالة من لحظة ما انحلت القضية ❤️</p>
+</div>
+</section>
+</section>
+</main>
+
+<audio id="caseSong" src="./لو%20حظي.mp3" preload="auto" loop></audio>
+
 <script>
 let selected=[];
+let phraseTimer;
 const $=id=>document.getElementById(id);
 function bars(n){document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('on',i<n))}
-function show(id){$(id).classList.remove('hidden')}function hide(id){$(id).classList.add('hidden')}
-function check1(){if($('c1').value.trim()==='2606'){hide('s1');show('s2');bars(2)}else $('f1').textContent='❌ الرمز ليس عشوائيًا. ارجعي إلى الدليل: اليوم + الشهر.'}
-function witness(btn,ok){if(btn.disabled)return;btn.disabled=true;if(ok){selected.push(btn);btn.style.borderColor='#e05f96';btn.style.background='#e05f9620'}else btn.style.opacity='.4';if(selected.length===3){const all=[...document.querySelectorAll('#s2 .choice')];const wrong=all.filter(x=>x.disabled&&!selected.includes(x));if(wrong.length===3){hide('s2');show('s3');bars(3)}}}
-function riddle(i){if(i===3){$('clue3').textContent='الدليل الحاسم: لم يعد السؤال «أين القلب؟» بل «لماذا اختار صاحبه ألا يسترده؟». من هنا تبدأ الحقيقة الحقيقية للقضية.';show('clue3');setTimeout(()=>{hide('s3');show('s4');bars(4)},700)}else $('f3').textContent='🔍 ليس هذا هو التناقض. ابحثي عن الجملة التي تغيّر معنى القضية كلها.'}
-function theory(t){if(t==='hamza'){$('f4').textContent='❤️‍🩹 هذا الدليل يقودك إلى الحقيقة… لكن لا يزال هناك ظرف أخير. افتحيه.';setTimeout(()=>{hide('s4');show('s5');bars(5)},700)}else $('f4').textContent='🧩 قريب… لكن اسألي: من اختار أن يبقى القلب هنا؟'}
-function secret(i){if(i===0){$('f5').textContent='❤️ صح! أوائل السطور تقول: بيونتي. الاسم الذي يظهر عندما تختفي الكلمات ويبقى المعنى.';setTimeout(()=>{hide('s5');show('s6');bars(6)},900)}else $('f5').textContent='🔎 في الرسالة شيء مخفي. خذي أول حرف من كل سطر واقرئيها ببطء.'}
-function finish(i){if(i===1){hide('s6');show('final');bars(6)}else $('f6').textContent='❌ هذا جزء من القضية، لكنه ليس الحقيقة كاملة. اجمعي كل الأدلة قبل الحكم.'}
-</script></body></html>
+function show(id){$(id).classList.remove('hidden')}
+function hide(id){$(id).classList.add('hidden')}
+
+function check1(){
+ if($('c1').value.trim()==='2606'){hide('s1');show('s2');bars(2)}
+ else $('f1').textContent='❌ الرمز مش عشوائي. ارجعي للدليل: اليوم + الشهر.'
+}
+
+function witness(btn,ok){
+ if(btn.disabled)return;
+ btn.disabled=true;
+ if(ok){
+  selected.push(btn);
+  btn.style.borderColor='#e05f96';
+  btn.style.background='#e05f9620';
+ }else btn.style.opacity='.4';
+ if(selected.length===3){
+  hide('s2');show('s3');bars(3);
+ }
+}
+
+function riddle(i){
+ if(i===3){
+  $('clue3').textContent='الدليل الحاسم: لم يعد السؤال «وين القلب؟» بل «ليش اختار صاحبه إنه ما يرجعه؟». من هون بتبدأ الحقيقة الحقيقية للقضية.';
+  show('clue3');
+  setTimeout(()=>{hide('s3');show('s4');bars(4)},700);
+ }else $('f3').textContent='🔍 مش هاد التناقض. دوري على الجملة اللي بتغيّر معنى القضية كلها.'
+}
+
+function theory(t){
+ if(t==='hamza'){
+  $('f4').textContent='❤️‍🩹 هذا الدليل أخذك للحقيقة… بس لسا في ظرف أخير. افتحيه.';
+  setTimeout(()=>{hide('s4');show('s5');bars(5)},700);
+ }else $('f4').textContent='🧩 قريب… بس اسألي: مين اختار إنه القلب يضل هون؟'
+}
+
+function secret(i){
+ if(i===0){
+  $('f5').textContent='❤️ صح… أوائل السطور بتحكي: بيونتي. الاسم اللي ظهر لما اختفت الكلمات وبقي المعنى.';
+  setTimeout(()=>{hide('s5');show('s6');bars(6)},900);
+ }else $('f5').textContent='🔎 في الرسالة إشي مخفي. خذي أول حرف من كل سطر واقرئيهم على مهلك.'
+}
+
+function startSong(){
+ const song=$('caseSong');
+ song.currentTime=0;
+ const p=song.play();
+ if(p && typeof p.catch==='function')p.catch(()=>{});
+}
+
+function startPhrases(){
+ const phrases=[
+  'بيونتي… في أشياء ما بدها دليل عشان تكون حقيقة ❤️',
+  'من بين كل الأدلة، ضحكتك كانت أقوى دليل.',
+  'القضية انحلت… بس اسمك ظل موجود بكل صفحة.',
+  'أحلى اشي بالقضية إن النهاية طلعت مثل ما كان لازم تكون.',
+  'بيان، وجودك لحاله بغيّر شكل اليوم.',
+  'كل التفاصيل الصغيرة فيكي طلعت أهم من كل الأدلة الكبيرة.',
+  'بحبك بيون… وبحب كل لحظة بتكوني فيها مبسوطة.',
+  'عسولتي، لو في دليل على الراحة كان اسمك أول سطر فيه.',
+  'في أشياء كثيرة ممكن تنكتب… بس أهمها: بحبك بيونتي.',
+  'الحكم الأخير: خليكي دايمًا بخير، والباقي كله بهون ❤️'
+ ];
+ let i=0;
+ clearInterval(phraseTimer);
+ phraseTimer=setInterval(()=>{
+  i=(i+1)%phrases.length;
+  const box=$('phrase');
+  box.style.animation='none';
+  void box.offsetWidth;
+  box.textContent=phrases[i];
+  box.style.animation='fadePhrase .9s ease both';
+ },4000);
+}
+
+function finish(i){
+ if(i===1){
+  startSong();
+  hide('s6');
+  show('final');
+  bars(6);
+  setTimeout(()=>{
+   show('romanticReveal');
+   $('romanticReveal').scrollIntoView({behavior:'smooth',block:'start'});
+   startPhrases();
+  },450);
+ }else $('f6').textContent='❌ هذا جزء من القضية، بس مش الحقيقة كاملة. اجمعي كل الأدلة قبل الحكم.'
+}
+</script>
+</body>
+</html>
