@@ -150,7 +150,7 @@ body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Segoe UI",sa
 <button class="choice" onclick="secret(1)">«بيون» — «بيان» — «بحبك» — «بيونتي»</button>
 <button class="choice" onclick="secret(2)">«بيان» — «بيونتي» — «بيون» — «بحبك»</button>
 <button class="choice" onclick="secret(3)">«بيوتي» — «بيان» — «بيون» — «بحبك»</button>
-</div><div class="feedback" id="f5"></div>n>
+</div><div class="feedback" id="f5"></div>
 
 <section id="s6" class="stage hidden">
 <h2>الملف الأخير — السؤال الذي لا ينفع معه التخمين 🕯️</h2>
@@ -219,7 +219,7 @@ body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Segoe UI",sa
 </section>
 </main>
 
-<audio id="caseSong" src="./لو%20حظي.mp3" preload="auto" loop></audio>
+<audio id="caseSong" src="./لو%20حظي.mp3" preload="auto" playsinline loop></audio>
 
 <script>
 let selected=[];
@@ -272,8 +272,18 @@ function secret(i){
 function startSong(){
  const song=$('caseSong');
  song.currentTime=0;
+ song.muted=false;
  const p=song.play();
- if(p && typeof p.catch==='function')p.catch(()=>{});
+ if(p && typeof p.catch==='function'){
+  p.catch(()=>{
+   const note=document.querySelector('.songNote');
+   if(note) note.textContent='🎵 اضغطي هنا إذا ما بدأ الصوت تلقائيًا ❤️';
+   if(note){
+    note.style.cursor='pointer';
+    note.onclick=()=>{song.play().catch(()=>{}); note.textContent='🎵 الأغنية شغّالة ❤️';};
+   }
+  });
+ }
 }
 
 function startPhrases(){
