@@ -48,7 +48,7 @@ body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Segoe UI",sa
 .prayer:before{content:"♡";color:#ff9fc5;font-size:22px;display:block;margin-bottom:3px}
 .endLove{margin-top:24px;padding:20px;border-radius:22px;background:#ff6a9f12;border:1px solid #ff8ebc33;color:#ffe1ed;line-height:2;font-size:19px}
 .signature{margin-top:15px;color:#ffb5d0;font-weight:800;font-size:20px}
-.songNote{margin-top:14px;font-size:12px;opacity:.6}
+.songNote{margin-top:14px;font-size:13px;opacity:.78}.songBtn{margin-top:12px;border:0;border-radius:14px;background:#e05f96;color:#fff;padding:12px 20px;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 8px 25px #e05f9638}.songBtn:active{transform:scale(.98)}
 @media(max-width:500px){.suspects{grid-template-columns:1fr}.head h1{font-size:25px}.romantic{padding:24px 14px}.reveal h2{font-size:24px}.phrase{font-size:17px}}
 </style>
 </head>
@@ -213,7 +213,7 @@ body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Segoe UI",sa
 وبدعي ربنا كل يوم إنه يحفظك ويسعدك ويكتبلك كل الخير اللي بالدنيا.
 <div class="signature">— حمزة</div>
 </div>
-<p class="songNote">الأغنية شغّالة من لحظة ما انحلت القضية ❤️</p>
+<p class="songNote" id="songStatus">🎵 حاولت أشغّل الأغنية تلقائيًا ❤️</p><button class="songBtn" id="songBtn" onclick="playSongManually()">🎵 تشغيل الأغنية ❤️</button>
 </div>
 </section>
 </section>
@@ -273,17 +273,26 @@ function startSong(){
  const song=$('caseSong');
  song.currentTime=0;
  song.muted=false;
+ song.volume=1;
  const p=song.play();
- if(p && typeof p.catch==='function'){
-  p.catch(()=>{
-   const note=document.querySelector('.songNote');
-   if(note) note.textContent='🎵 اضغطي هنا إذا ما بدأ الصوت تلقائيًا ❤️';
-   if(note){
-    note.style.cursor='pointer';
-    note.onclick=()=>{song.play().catch(()=>{}); note.textContent='🎵 الأغنية شغّالة ❤️';};
-   }
+ if(p && typeof p.then==='function'){
+  p.then(()=>{
+   const status=$('songStatus');
+   if(status) status.textContent='🎵 الأغنية شغّالة ❤️';
+  }).catch(()=>{
+   const status=$('songStatus');
+   if(status) status.textContent='🎵 الآيفون منع التشغيل التلقائي — اضغطي الزر تحت لتشتغل ❤️';
   });
  }
+}
+function playSongManually(){
+ const song=$('caseSong');
+ song.muted=false;
+ song.volume=1;
+ song.play().then(()=>{
+  const status=$('songStatus');
+  if(status) status.textContent='🎵 الأغنية شغّالة ❤️';
+ }).catch(()=>{});
 }
 
 function startPhrases(){
