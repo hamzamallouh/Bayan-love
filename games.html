@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090a12">
+<title>🎮 الألعاب — ملف القضية 26/06</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:radial-gradient(circle at 50% -10%,#302044,#090a12 58%);color:#f8f5fb;padding:20px}.wrap{max-width:760px;margin:auto}.back{display:inline-block;color:#fff;text-decoration:none;margin:4px 0 16px;opacity:.8}.case{background:rgba(255,255,255,.065);border:1px solid rgba(255,255,255,.13);border-radius:25px;padding:22px;box-shadow:0 25px 80px #0008;backdrop-filter:blur(15px)}.stamp{display:inline-block;border:2px solid #e05a91;color:#ff9bc1;padding:5px 10px;border-radius:7px;transform:rotate(-2deg);font-weight:900;font-size:12px;letter-spacing:1px}.head{text-align:center;border-bottom:1px dashed #ffffff25;padding-bottom:18px}.icon{font-size:54px}.head h1{margin:5px 0;font-size:30px}.head p{opacity:.72}.file{background:#11121b;border:1px solid #ffffff12;border-radius:17px;padding:17px;margin-top:17px}.file b{color:#ff91ba}.redacted{background:#05060a;color:#05060a;padding:0 8px;border-radius:3px}.stage{margin-top:18px}.stage h2{font-size:21px;margin:0 0 8px}.stage p{line-height:1.9;opacity:.85}.choices{display:grid;gap:10px;margin-top:15px}.choice{border:1px solid #ffffff18;background:#ffffff08;color:#fff;border-radius:15px;padding:14px;text-align:right;font-size:16px;cursor:pointer;transition:.2s}.choice:hover{transform:translateY(-1px);background:#ffffff12}.choice:disabled{opacity:.55;cursor:default}.feedback{min-height:32px;margin-top:12px;color:#ffabc9;font-weight:700}.hidden{display:none!important}.clue{border-right:3px solid #e05a91;padding:12px 14px;background:#ffffff07;border-radius:12px;margin:10px 0;line-height:1.8}.code{display:flex;gap:8px;margin-top:12px}.code input{flex:1;background:#fff;color:#111;border:0;border-radius:13px;padding:13px;text-align:center;font-size:18px}.code button,.finalBtn{border:0;border-radius:13px;background:#e05a91;color:#fff;padding:12px 17px;font-weight:800;cursor:pointer}.progress{display:flex;gap:5px;margin:17px 0}.dot{height:5px;flex:1;border-radius:10px;background:#ffffff15}.dot.on{background:#e05a91}.suspects{display:grid;grid-template-columns:1fr 1fr;gap:10px}.suspect{padding:15px;border-radius:14px;border:1px solid #ffffff14;background:#ffffff06;cursor:pointer}.suspect b{display:block;margin-bottom:4px}.final{margin-top:22px;text-align:center;padding:22px;border-radius:20px;background:linear-gradient(145deg,#35152c,#16101b);border:1px solid #ff6da922}.seal{font-size:46px}.answer{font-size:22px;font-weight:900;color:#ff9fc4}.note{opacity:.7;font-size:13px;margin-top:8px}@media(max-width:500px){.suspects{grid-template-columns:1fr}.head h1{font-size:25px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<a class="back" href="index.html">↩️ رجوع للموقع</a>
+<section class="case">
+<div class="head"><div class="stamp">سري للغاية • ملف 26/06</div><div class="icon">🕵️‍♂️❤️</div><h1>🎮 الألعاب — ملف القضية</h1><p>القضية رقم <b>26/06</b> — سرقة قلب حمزة</p></div>
+
+<div class="file">
+<p><b>المتهمّة:</b> بيان</p>
+<p><b>التهمة:</b> سرقة قلب شخص اسمه حمزة.</p>
+<p><b>حالة القلب:</b> مفقود منذ ليلة 26/06.</p>
+<p><b>ملاحظة:</b> لا يوجد دليل مباشر على مكان القلب. وكل من حاول التحقيق رجع وهو مشكك بالقضية.</p>
+</div>
+
+<div class="progress" id="progress"><i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+
+<section id="s1" class="stage">
+<h2>الدليل الأول — رمز الملف 🔐</h2>
+<p>المحقق السابق ترك ملاحظة واحدة:</p>
+<div class="clue">«التاريخ ليس مجرد تاريخ. خذ اليوم ثم الشهر، واكتبهما متلاصقين. إذا عرفت الرمز، افتح أول ظرف.»</div>
+<div class="code"><input id="c1" inputmode="numeric" placeholder="الرمز من 4 أرقام"><button onclick="check1()">فتح الظرف</button></div>
+<div class="feedback" id="f1"></div>
+</section>
+
+<section id="s2" class="stage hidden">
+<h2>الدليل الثاني — شهادة الشهود 🗂️</h2>
+<p>ثلاث شهادات صحيحة مخبأة بين شهادات مزيفة. اختاري <b>الثلاثة</b> الذين يمكن اعتبارهم أدلة على عملية السرقة:</p>
+<div class="choices">
+<button class="choice" onclick="witness(this,true)">👀 «من أول نظرة، ما عاد القلب يتصرف طبيعي.»</button>
+<button class="choice" onclick="witness(this,false)">☕ «كان يشرب قهوته بشكل طبيعي.»</button>
+<button class="choice" onclick="witness(this,true)">😊 «كل مرة كانت تبتسم، كان ينسى شو كان بده يحكي.»</button>
+<button class="choice" onclick="witness(this,false)">🌤️ «الجو ليلة القضية كان لطيفًا.»</button>
+<button class="choice" onclick="witness(this,true)">💬 «كلامها كان يرجّع له ابتسامته بدون سبب.»</button>
+</div>
+<div class="feedback" id="f2"></div>
+</section>
+
+<section id="s3" class="stage hidden">
+<h2>الدليل الثالث — التناقض الغريب 🧩</h2>
+<p>وجد المحقق ثلاث جمل في دفتر حمزة. واحدة منها تكشف التناقض الحقيقي:</p>
+<div class="choices">
+<button class="choice" onclick="riddle(0)">«أريد استرجاع قلبي، لأنه ليس عندي.»</button>
+<button class="choice" onclick="riddle(1)">«بحثت عنه كثيرًا، لكن كل دليل قادني إليها.»</button>
+<button class="choice" onclick="riddle(2)">«حين وجدته، لم أشعر أنني وجدته.»</button>
+<button class="choice" onclick="riddle(3)">«كلما اقتربت من الحقيقة، صرت أقل رغبة في أن تنتهي القضية.»</button>
+</div>
+<div class="feedback" id="f3"></div>
+<div id="clue3" class="clue hidden"></div>
+</section>
+
+<section id="s4" class="stage hidden">
+<h2>الدليل الرابع — غرفة الأدلة 🔎</h2>
+<p>الآن صار عندك أربع قطع من التحقيق. لا تستعجلي. اسألي نفسك: <b>مين عنده الدافع؟ ومين المستفيد؟</b></p>
+<div class="clue">الدليل A: القلب اختفى بعد 26/06.</div>
+<div class="clue">الدليل B: كل الشهادات الحقيقية مرتبطة ببيان، لكن ولا شهادة قالت إنها أجبرت القلب على الرحيل.</div>
+<div class="clue">الدليل C: صاحب القلب نفسه لم يعد يريد استعادته.</div>
+<div class="clue">الدليل D: آخر مكان عُثر فيه على أثر القلب كان عند الشخص المتهمة.</div>
+<p><b>اختاري استنتاجك قبل فتح الملف الأخير:</b></p>
+<div class="suspects">
+<button class="suspect" onclick="theory('bayan')">❤️ بيان — أخذت القلب</button>
+<button class="suspect" onclick="theory('heart')">🫀 القلب — اختار مكانه</button>
+<button class="suspect" onclick="theory('memory')">🧠 الذكريات — خبّته</button>
+<button class="suspect" onclick="theory('time')">⏳ الوقت — أخذه معها</button>
+</div>
+<div class="feedback" id="f4"></div>
+</section>
+
+<section id="s5" class="stage hidden">
+<h2>الملف الأخير — الحكم 🕯️</h2>
+<p>آخر سؤال في التحقيق:</p>
+<div class="clue">إذا كان القلب لم يُجبر على الرحيل، وصاحبه لا يريد استرجاعه، فما هي «الجريمة» الحقيقية؟</div>
+<div class="choices">
+<button class="choice" onclick="finish(0)">القلب ضاع بسبب خطأ في التحقيق.</button>
+<button class="choice" onclick="finish(1)">بيان سرقت القلب فعلًا… لكن صاحب القلب اكتشف أنه لا يريد استرجاعه.</button>
+<button class="choice" onclick="finish(2)">القضية كلها كانت مزحة ولم تحدث.</button>
+</div>
+<div class="feedback" id="f5"></div>
+</section>
+
+<div id="final" class="final hidden">
+<div class="seal">🔴</div>
+<div class="stamp">حُسمت القضية</div>
+<h2>ملف القضية: سرقة قلبي</h2>
+<p class="answer">المتهمة: بيان ❤️</p>
+<p>التهمة: سرقة قلب شخص اسمه حمزة.</p>
+<p><b>الأدلة:</b> ابتسامتها، كلامها، وجودها، وكل مرة بتخليه يبتسم بدون سبب.</p>
+<p><b>الحكم:</b> تبقى صاحبة القلب للأبد ❤️</p>
+<div class="file"><b>ملاحظة المحقق:</b><br>حاولت أسترجع قلبي…<br>بس اكتشفت إني مش حابب آخذه أصلًا. ❤️</div>
+<p class="note">تم إغلاق الملف… لكن القضية ستبقى مفتوحة مدى الحياة.</p>
+</div>
+</section>
+</main>
+
+<script>
+let selected=[],step=1;
+const $=id=>document.getElementById(id);
+function bars(n){document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('on',i<n))}
+function show(id){$(id).classList.remove('hidden')}
+function hide(id){$(id).classList.add('hidden')}
+function check1(){if($('c1').value.trim()==='2606'){hide('s1');show('s2');bars(2)}else $('f1').textContent='❌ الرمز غير صحيح. تذكري: اليوم + الشهر، بدون أي فاصل.'}
+function witness(btn,ok){
+ if(btn.disabled)return;
+ btn.disabled=true;
+ if(ok){selected.push(btn);btn.style.borderColor='#e05a91';btn.style.background='#e05a9120'}
+ else{btn.style.opacity='.45'}
+ if(selected.length===3){
+   const wrong=[...document.querySelectorAll('#s2 .choice')].filter(x=>x.disabled&&!selected.includes(x));
+   if(wrong.length===2){hide('s2');show('s3');bars(3)}
+ }
+}
+function riddle(i){
+ if(i===3){$('clue3').textContent='الدليل الحاسم: المشكلة لم تعد «أين القلب؟» بل «لماذا لا يريد صاحبه استعادته؟». القضية بدأت كسرقة، وانتهت باعتراف مختلف تمامًا.';show('clue3');setTimeout(()=>{hide('s3');show('s4');bars(4)},650)}
+ else $('f3').textContent='🔍 هذا الدليل مهم… لكنه لا يحل التناقض. ارجعي للجمل واسألي: أي واحدة تغيّر معنى القضية كلها؟'
+}
+function theory(t){
+ if(t==='heart'){ $('f4').textContent='🧩 هذا أقرب للحقيقة، لكن الملف الأخير يحتاج خطوة إضافية: مين «المتهم» في عنوان القضية؟';setTimeout(()=>{hide('s4');show('s5');bars(5)},800)}
+ else $('f4').textContent='🔎 الدليل لا يطابق هذا الاستنتاج. في شيء أهم من مكان القلب: قرار صاحبه.';
+}
+function finish(i){
+ if(i===1){hide('s5');show('final');bars(5)}
+ else $('f5').textContent='❌ التناقض ما زال موجودًا. إذا كان القلب اختار مكانه وصاحبه لا يريد استعادته، فماذا حدث فعلًا؟'
+}
+</script>
+</body>
+</html>
